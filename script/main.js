@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   accHeaders.forEach(header => {
     header.addEventListener('click', () => {
       const item = header.parentElement;
-      // Close others (optional)
       document.querySelectorAll('.accordion-item').forEach(i => {
         if(i !== item) i.classList.remove('active');
       });
@@ -55,39 +54,80 @@ document.addEventListener('DOMContentLoaded', () => {
   closeCart?.addEventListener('click', toggleCart);
   cartOverlay?.addEventListener('click', toggleCart);
 
-
   // --- CHATBOT ---
   const chatToggle = document.getElementById('chatToggle');
   const chatWindow = document.getElementById('chatWindow');
   const chatClose = document.getElementById('chatClose');
   const chatMessages = document.getElementById('chatMessages');
+  const userChatInput = document.getElementById('userChatInput');
+  const sendMessageBtn = document.getElementById('sendMessage');
 
   chatToggle?.addEventListener('click', () => chatWindow.classList.add('active'));
   chatClose?.addEventListener('click', () => chatWindow.classList.remove('active'));
 
   window.sendQuickReply = (type) => {
     let reply = "";
+    // Standard Sender ist TL Bot
+    let senderName = "TL Bot";
+
     if(type === 'lieferzeit') reply = "Die Bearbeitungszeit variiert zwischen 30 Minuten (kleine Boosts) und bis zu 5 Tagen (große Account-Pakete).";
     if(type === 'sicherheit') reply = "Unsere Methoden sind 'undetected'. Wir testen jeden Patch umfangreich, bevor wir Accounts ausliefern.";
-    if(type === 'human') reply = "Verstanden. Bitte komm auf unseren Discord und öffne ein Ticket, ein Mitarbeiter kümmert sich sofort um dich.";
     
-    // User Msg
-    const userDiv = document.createElement('div');
-    userDiv.className = 'msg user';
+    // Human Request
+    if(type === 'human') {
+      reply = "Verstanden. Bitte komm auf unseren Discord und öffne ein Ticket, ein Mitarbeiter kümmert sich sofort um dich.";
+    }
+    
+    // 1. User Nachricht rendern
     let userText = "Frage";
     if(type === 'lieferzeit') userText = "Lieferzeit?";
     if(type === 'sicherheit') userText = "Sicherheit?";
     if(type === 'human') userText = "Mensch?";
-    userDiv.innerText = userText;
-    chatMessages.appendChild(userDiv);
 
-    // Bot Reply
+    addUserMessage(userText);
+
+    // 2. Bot Antwort verzögert
     setTimeout(() => {
-      const botDiv = document.createElement('div');
-      botDiv.className = 'msg bot';
-      botDiv.innerText = reply;
-      chatMessages.appendChild(botDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+      addBotMessage(reply, senderName);
     }, 600);
   };
+
+  // Manuelles Senden erlauben
+  sendMessageBtn?.addEventListener('click', () => {
+    const text = userChatInput.value.trim();
+    if(text) {
+      addUserMessage(text);
+      userChatInput.value = "";
+      // Dummy Antwort falls man was tippt
+      setTimeout(() => addBotMessage("Ich bin nur ein Bot. Bitte nutze die Buttons oder Discord für Support.", "TL Bot"), 800);
+    }
+  });
+
+  // Enter Taste
+  userChatInput?.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') sendMessageBtn.click();
+  });
+
+  // Helper Functions
+  function addUserMessage(text) {
+    const userContainer = document.createElement('div');
+    userContainer.className = 'msg-container user';
+    userContainer.innerHTML = `
+      <span class="msg-sender">Du</span>
+      <div class="msg user">${text}</div>
+    `;
+    chatMessages.appendChild(userContainer);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addBotMessage(text, sender) {
+    const botContainer = document.createElement('div');
+    botContainer.className = 'msg-container bot';
+    botContainer.innerHTML = `
+      <span class="msg-sender">${sender}</span>
+      <div class="msg bot">${text}</div>
+    `;
+    chatMessages.appendChild(botContainer);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 });
