@@ -8,7 +8,7 @@
   <meta name="description" content="Dein deutscher Shop für GTA Mods, CoD Unlocks & Ingame-Währungen. Sicher, schnell & persönlich." />
   <meta name="theme-color" content="#0a0b10" />
 
-  <link rel="icon" type="image/png" href="./images/tl-logo-nobg.png" />
+  <link rel="icon" type="image/webp" href="./images/tl-logo-nobg.webp" />
   <link rel="stylesheet" href="./style/main.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,10 +20,17 @@
 
   <div class="global-bg"></div>
 
-  <header class="navbar" id="navbar">
+  <div class="top-bar-business">
+    <div class="container top-bar-inner">
+      <span><i class="fa-solid fa-envelope"></i> team-lazer.business@web.de</span>
+      <span><i class="fa-solid fa-circle-check"></i> Status: Online</span>
+    </div>
+  </div>
+
+  <header class="navbar opt-1" id="navbar">
     <div class="container nav-container">
       <a class="nav-logo" href="index.html">
-        <img src="./images/tl-logo-nobg.png" alt="TEAM LAZER Logo" />
+        <img src="./images/tl-logo-nobg.webp" alt="TEAM LAZER Logo" />
         <span class="logo-text">TEAM LAZER</span>
       </a>
 
@@ -56,7 +63,7 @@
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
       <h3>Dein Warenkorb</h3>
-      <button id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+      <button id="closeCart" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
     <div class="cart-items" id="cartItemsContainer">
@@ -81,10 +88,6 @@
     <a href="./html/shop.html" class="mobile-link"><i class="fa-solid fa-gamepad"></i> Shop</a>
     <a href="./html/about.html" class="mobile-link"><i class="fa-solid fa-users"></i> Über uns</a>
     <a href="./html/contact.html" class="mobile-link"><i class="fa-solid fa-envelope"></i> Kontakt</a>
-    <div class="mobile-socials">
-      <a href="#"><i class="fa-brands fa-discord"></i></a>
-      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    </div>
   </div>
 
   <section class="hero">
@@ -111,10 +114,9 @@
       </div>
 
       <div class="category-grid" id="categoryGrid">
-        
         <a href="./html/shop/gta.html" class="game-card scroll-reveal" data-name="gta v grand theft auto">
           <div class="img-wrapper">
-            <img src="./images/banners/gta.png" alt="GTA V" loading="lazy" />
+            <img src="./images/banners/gta.webp" alt="GTA V" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-solid fa-car"></i></div>
@@ -128,7 +130,7 @@
 
         <a href="./html/shop/fortnite.html" class="game-card scroll-reveal" data-name="fortnite vbucks">
           <div class="img-wrapper">
-            <img src="./images/banners/fortnite.png" alt="Fortnite" loading="lazy" />
+            <img src="./images/banners/fortnite.webp" alt="Fortnite" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-solid fa-gun"></i></div>
@@ -142,7 +144,7 @@
 
         <a href="./html/shop/cod.html" class="game-card scroll-reveal" data-name="call of duty cod mw3">
           <div class="img-wrapper">
-            <img src="./images/banners/cod.png" alt="Call of Duty" loading="lazy" />
+            <img src="./images/banners/cod.webp" alt="Call of Duty" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-solid fa-skull"></i></div>
@@ -156,7 +158,7 @@
 
         <a href="./html/shop/rdo.html" class="game-card scroll-reveal" data-name="red dead online rdo">
           <div class="img-wrapper">
-            <img src="./images/banners/rdo.png" alt="RDO" loading="lazy" />
+            <img src="./images/banners/rdo.webp" alt="RDO" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
@@ -170,7 +172,7 @@
 
         <a href="./html/shop/psn.html" class="game-card scroll-reveal" data-name="psn playstation network">
           <div class="img-wrapper">
-            <img src="./images/banners/psn.png" alt="PSN" loading="lazy" />
+            <img src="./images/banners/psn.webp" alt="PSN" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-brands fa-playstation"></i></div>
@@ -184,7 +186,7 @@
 
         <a href="./html/shop/rocket.html" class="game-card scroll-reveal" data-name="rocket league">
           <div class="img-wrapper">
-            <img src="./images/banners/rocket.png" alt="Rocket League" loading="lazy" />
+            <img src="./images/banners/rocket.webp" alt="Rocket League" loading="lazy" />
           </div>
           <div class="card-info">
             <div class="game-icon"><i class="fa-solid fa-car-burst"></i></div>
@@ -195,7 +197,6 @@
             <i class="fa-solid fa-chevron-right arrow"></i>
           </div>
         </a>
-
       </div>
     </div>
   </section>
@@ -214,7 +215,7 @@
         <div class="step-item scroll-reveal delay-2">
           <div class="step-num">02</div>
           <h3>Sicher bezahlen</h3>
-          <p>Nutze PayPal, Klarna oder Überweisung. Deine Daten sind SSL-verschlüsselt.</p>
+          <p>Nutze PayPal, Klarna oder Überweisung.</p>
         </div>
         <div class="step-item scroll-reveal delay-3">
           <div class="step-num">03</div>
@@ -262,26 +263,32 @@
     <div class="chat-window" id="chatWindow">
       <div class="chat-header">
         <div class="agent-info">
-          <img src="./images/tl-logo-nobg.png" alt="Support" />
+          <img src="./images/tl-logo-nobg.webp" alt="Support" />
           <div>
             <strong>TL Bot</strong>
             <span class="status-indicator"><span class="status-dot"></span> Online</span>
           </div>
         </div>
-        <button id="chatClose"><i class="fa-solid fa-xmark"></i></button>
+        <button id="chatClose" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot">
-          Hey! 👋 <br>Wie können wir dir weiterhelfen?
+        
+        <div class="msg-container bot">
+          <span class="msg-sender">TL Bot</span>
+          <div class="msg bot">
+            Hey! 👋 <br>Wie können wir dir weiterhelfen?
+          </div>
         </div>
+
         <div class="chat-options">
           <button onclick="sendQuickReply('lieferzeit')">🚚 Lieferzeit?</button>
           <button onclick="sendQuickReply('sicherheit')">🛡️ Sicherheit?</button>
           <button onclick="sendQuickReply('human')">👤 Ich brauche einen Menschen</button>
         </div>
       </div>
+      
       <div class="chat-input-area">
-        <input type="text" id="userChatInput" placeholder="Nachricht..." />
+        <input type="text" id="userChatInput" placeholder="Nachricht senden..." />
         <button id="sendMessage"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
@@ -291,11 +298,12 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="./images/tl-logo-nobg.png" alt="Logo" class="footer-logo" />
+          <img src="./images/tl-logo-nobg.webp" alt="Logo" class="footer-logo" />
           <p>Ehrlichkeit & Qualität – Dein Partner für Gaming.</p>
           <div class="social-links">
             <a href="#" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
           </div>
         </div>
@@ -318,7 +326,6 @@
             <li><a href="./html/impressum.html">Impressum</a></li>
             <li><a href="./html/datenschutz.html">Datenschutz</a></li>
             <li><a href="./html/agb.html">AGB</a></li>
-            <li><a href="./html/widerruf.html">Widerrufsrecht</a></li>
           </ul>
         </div>
 
@@ -326,7 +333,6 @@
           <h4>Support</h4>
           <ul>
             <li><a href="./html/contact.html">Kontaktformular</a></li>
-            <li><a href="mailto:support@team-lazer.de">E-Mail Support</a></li>
             <li><a href="#">Discord Support</a></li>
           </ul>
         </div>
