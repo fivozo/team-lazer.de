@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>GTA V Shop | TEAM LAZER</title>
+  
+  <link rel="icon" type="image/webp" href="../../images/tl-logo-nobg.webp" />
+  <link rel="stylesheet" href="../../style/main.css" />
+  <link rel="stylesheet" href="../../style/shop.css" /> <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="global-bg"></div>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a class="nav-logo" href="../../index.html">
+        <img src="../../images/tl-logo-nobg.webp" alt="TEAM LAZER Logo" />
+        <span class="logo-text">TEAM LAZER</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../shop.html" class="active">Produkte</a>
+        <a href="../about.html">Über uns</a>
+        <a href="../../index.html#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="cartTrigger" class="cart-btn" aria-label="Warenkorb">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <button class="burger-btn" id="burgerBtn"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Dein Warenkorb</h3>
+      <button id="closeCart" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <div class="empty-cart-msg">Dein Warenkorb ist leer.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Gesamt:</span><span id="cartTotalValue">0,00 €</span>
+      </div>
+      <a href="../cart.html" class="btn btn-primary btn-block">Zum Warenkorb</a>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../../index.html" class="mobile-link"><i class="fa-solid fa-house"></i> Startseite</a>
+    <a href="../shop.html" class="mobile-link active"><i class="fa-solid fa-gamepad"></i> Shop</a>
+    <a href="../about.html" class="mobile-link"><i class="fa-solid fa-users"></i> Über uns</a>
+    <a href="../contact.html" class="mobile-link"><i class="fa-solid fa-envelope"></i> Kontakt</a>
+  </div>
+
+  <section class="shop-hero">
+    <div class="shop-hero-bg" style="background-image: url('../../images/banners/gta.webp');"></div>
+    <div class="shop-hero-content container fade-in-up">
+      <h1>GTA V <span class="highlight">Boosts & Accounts</span></h1>
+      <p>Der sicherste Weg zu Geld, RP und Unlock-Alls in Los Santos.</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container shop-layout">
+      
+      <aside class="shop-sidebar">
+        <div class="filter-group">
+          <h3>Kategorien</h3>
+          <ul>
+            <li><button class="filter-btn active" data-filter="all">Alle anzeigen</button></li>
+            <li><button class="filter-btn" data-filter="cash">💰 Geld Boost</button></li>
+            <li><button class="filter-btn" data-filter="rank">⭐ Rank / RP</button></li>
+            <li><button class="filter-btn" data-filter="account">👤 Accounts</button></li>
+            <li><button class="filter-btn" data-filter="unlock">🔓 Unlocks</button></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="product-grid">
+        
+        <div class="product-card scroll-reveal" data-category="cash">
+          <div class="p-img">
+            <img src="../../images/products_gto/boosts/cash/boost_cash-10.jpg" alt="10 Mio GTA Cash" loading="lazy">
+            <span class="badge sale">BESTSELLER</span>
+          </div>
+          <div class="p-info">
+            <h4>10 Mio. GTA$</h4>
+            <p class="p-desc">Sichere Methode, keine Banngefahr. PS4/PS5/PC.</p>
+            <div class="p-footer">
+              <span class="price">9,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="10 Mio GTA$" data-price="9.99" data-img="../../images/products_gto/boosts/cash/boost_cash-10.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card scroll-reveal delay-1" data-category="cash">
+          <div class="p-img">
+            <img src="../../images/products_gto/boosts/cash/boost_cash-50.jpg" alt="50 Mio GTA Cash">
+          </div>
+          <div class="p-info">
+            <h4>50 Mio. GTA$</h4>
+            <p class="p-desc">Der beliebteste Boost für teure Fahrzeuge.</p>
+            <div class="p-footer">
+              <span class="price">24,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="50 Mio GTA$" data-price="24.99" data-img="../../images/products_gto/boosts/cash/boost_cash-50.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card scroll-reveal delay-2" data-category="rank">
+          <div class="p-img">
+            <img src="../../images/products_gto/boosts/rank/boost_rank-120.jpg" alt="Rank 120">
+          </div>
+          <div class="p-info">
+            <h4>Level 120 Boost</h4>
+            <p class="p-desc">Schalte alle Waffen und Fahrzeug-Upgrades frei.</p>
+            <div class="p-footer">
+              <span class="price">14,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="Level 120 Boost" data-price="14.99" data-img="../../images/products_gto/boosts/rank/boost_rank-120.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card scroll-reveal" data-category="account">
+          <div class="p-img">
+            <img src="../../images/products_gto/accounts/account_standard.jpg" alt="Standard Account">
+            <span class="badge new">NEU</span>
+          </div>
+          <div class="p-info">
+            <h4>Starter Account</h4>
+            <p class="p-desc">Level 120 + 100 Mio Cash + Unlock All. Sofort lieferbar.</p>
+            <div class="p-footer">
+              <span class="price">39,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="GTA Starter Account" data-price="39.99" data-img="../../images/products_gto/accounts/account_standard.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card scroll-reveal delay-1" data-category="unlock">
+          <div class="p-img">
+            <img src="../../images/products_gto/boosts/mixed/boost_mixed-30.jpg" alt="Mixed Bundle">
+          </div>
+          <div class="p-info">
+            <h4>30 Mio + Deluxe Cars</h4>
+            <p class="p-desc">Perfektes Paket für den Start. Geld & Autos.</p>
+            <div class="p-footer">
+              <span class="price">19,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="30 Mio + Cars Bundle" data-price="19.99" data-img="../../images/products_gto/boosts/mixed/boost_mixed-30.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card scroll-reveal delay-2" data-category="account">
+          <div class="p-img">
+            <img src="../../images/products_gto/accounts/account_high-end.jpg" alt="High End Account">
+            <span class="badge sale">-20%</span>
+          </div>
+          <div class="p-info">
+            <h4><span class="highlight">Kingpin</span> Account</h4>
+            <p class="p-desc">Level 500 + 500 Mio + ALLES freigeschaltet.</p>
+            <div class="p-footer">
+              <span class="price"><s style="font-size:0.8em; opacity:0.5;">99€</s> 79,99 €</span>
+              <button class="btn-icon add-to-cart" data-name="Kingpin Account" data-price="79.99" data-img="../../images/products_gto/accounts/account_high-end.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div> </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TEAM LAZER. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script/main.js"></script>
+  <script>
+    // Simple Filter Logic for Shop
+    const filters = document.querySelectorAll('.filter-btn');
+    const products = document.querySelectorAll('.product-card');
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Active Class logic
+        filters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.getAttribute('data-filter');
+
+        products.forEach(prod => {
+          if(category === 'all' || prod.getAttribute('data-category') === category) {
+            prod.style.display = 'flex';
+            setTimeout(() => prod.style.opacity = '1', 50);
+          } else {
+            prod.style.opacity = '0';
+            setTimeout(() => prod.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
