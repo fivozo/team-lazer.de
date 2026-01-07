@@ -2,214 +2,330 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TEAM LAZER | Gaming-Shop für Mods & Guthaben</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>TEAM LAZER | Gaming Services & Mods</title>
 
-  <!-- ✅ META DATA -->
-  <meta name="title" content="TEAM LAZER – Dein Gaming-Shop für Mods, Accounts & Guthaben" />
-  <meta name="description" content="TEAM LAZER bietet sichere Mods, exklusive Accounts und günstiges Guthaben für Games wie GTA V, Fortnite oder Call of Duty. Schnell, diskret & fair – Gaming auf dem nächsten Level." />
-  <meta name="keywords" content="TEAM LAZER, Gaming Shop, GTA V Mods, Fortnite, PSN Guthaben, RDO, Call of Duty, Rocket League, Accounts, Boosts, Game Mods" />
-  <meta name="author" content="TEAM LAZER" />
-  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Dein deutscher Shop für GTA Mods, CoD Unlocks & Ingame-Währungen. Sicher, schnell & persönlich." />
+  <meta name="theme-color" content="#0a0b10" />
 
-  <!-- Favicon / App Icons -->
   <link rel="icon" type="image/png" href="./images/tl-logo-nobg.png" />
-  <link rel="apple-touch-icon" href="./images/tl-logo-nobg.png" />
 
-  <!-- Open Graph / Discord / Facebook Preview -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://teamlazer.de/" />
-  <meta property="og:title" content="TEAM LAZER – Gaming-Shop für Mods & Guthaben" />
-  <meta property="og:description" content="Sichere Mods, Accounts & Guthaben für deine Lieblingsgames – schnell, diskret & zuverlässig. Willkommen bei TEAM LAZER." />
-  <meta property="og:image" content="https://ibb.co/FbLcpn97" />
-  <meta property="og:site_name" content="TEAM LAZER" />
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TEAM LAZER – Gaming-Shop für Mods & Guthaben" />
-  <meta name="twitter:description" content="Sichere Mods, Accounts & Guthaben für deine Lieblingsgames – schnell, diskret & zuverlässig." />
-  <meta name="twitter:image" content="https://teamlazer.de/images/tl-logo-nobg.png" />
-
-  <!-- Theme Color (für Browser UI auf Mobile) -->
-  <meta name="theme-color" content="#7c3aed" />
-
-  <!-- Styles -->
   <link rel="stylesheet" href="./style/main.css" />
-
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
-  <!-- 🔝 NAVBAR -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a class="nav-logo" href="index.html" aria-label="TEAM LAZER Startseite">
-        <img src="./images/tl-logo-nobg.png" alt="TEAM LAZER Logo" />
-        <span>TEAM LAZER</span>
+
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-trust">
+        <span><i class="fa-solid fa-star"></i> 4.9/5 Bewertung</span>
+        <span class="desktop-only">• Deutscher Support 🇩🇪</span>
+      </div>
+      <div class="top-socials">
+        <a href="#" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i> Community</a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a class="nav-logo" href="index.html">
+        <img src="./images/tl-logo-nobg.png" alt="Team Lazer Logo" />
+        <span class="logo-text">TEAM LAZER</span>
       </a>
 
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="index.html" class="active">Startseite</a>
-        <a href="./html/shop.html">Shop</a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="./html/shop.html">Produkte</a>
         <a href="./html/about.html">Über uns</a>
-        <a href="./html/contact.html">Kontakt</a>
+        <a href="#faq">FAQ</a>
       </nav>
 
-      <button class="nav-burger" id="burgerBtn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
+      <div class="nav-actions">
+        <div class="search-box desktop-only">
+          <input type="text" id="globalSearch" placeholder="Spiel suchen..." />
+          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        
+        <a href="./html/cart.html" class="cart-btn" aria-label="Warenkorb">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge">0</span>
+        </a>
 
-    <!-- 📱 Mobile-Menü -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <a href="index.html">Startseite</a>
-      <a href="./html/shop.html">Shop</a>
-      <a href="./html/about.html">Über uns</a>
-      <a href="./html/contact.html">Kontakt</a>
+        <button class="burger-btn" id="burgerBtn" aria-label="Menü">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- 🔔 Announcements (rotierender Pop-In) -->
-  <section class="announce" aria-label="Aktuelle Aktionen">
-    <div class="announce__inner">
-      <div class="announce__card" id="announceCard">
-        <span class="announce__label" id="announceLabel">
-          <i class="fa-solid fa-car"></i> GTA ONLINE
-        </span>
-        <p class="announce__text" id="announceText">
-          Yo! Auf jeden Money-Boost in GTA Online gibt’s <b>+2.000.000 GTA$</b> obendrauf.
-        </p>
-      </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-search">
+      <input type="text" id="mobileSearchInput" placeholder="Was suchst du?" />
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
-  </section>
-
-  <!-- 🎮 HERO SECTION -->
-  <section class="hero">
-    <div class="hero-inner">
-      <img src="./images/tl-logo-nobg.png" alt="TEAM LAZER Logo" class="hero-logo" loading="eager" decoding="sync" />
-      <h1>Willkommen bei <span class="highlight">TEAM LAZER</span></h1>
-      <p>Deutschlands modernster Gaming-Shop für Mods, Accounts, Boosts & Guthaben – schnell, sicher & günstig.</p>
-      <div class="hero-buttons">
-        <a href="./html/shop.html" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> Jetzt shoppen</a>
-        <a href="./html/about.html" class="btn btn-outline"><i class="fa-solid fa-circle-info"></i> Mehr erfahren</a>
-      </div>
+    <a href="index.html" class="mobile-link active"><i class="fa-solid fa-house"></i> Startseite</a>
+    <a href="./html/shop.html" class="mobile-link"><i class="fa-solid fa-gamepad"></i> Shop</a>
+    <a href="./html/about.html" class="mobile-link"><i class="fa-solid fa-users"></i> Über uns</a>
+    <a href="./html/contact.html" class="mobile-link"><i class="fa-solid fa-envelope"></i> Kontakt</a>
+    <div class="mobile-socials">
+      <a href="#"><i class="fa-brands fa-discord"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
     </div>
-  </section>
-
-  <!-- 💎 KATEGORIEN -->
-  <section class="categories">
-    <h2>Unsere Top-Kategorien</h2>
-    <div class="cat-grid">
-      <a href="./html/shop/gta.html" class="cat-card">
-        <img src="./images/banners/gta.png" alt="GTA V" loading="lazy" decoding="async" />
-        <span>GTA V</span>
-      </a>
-      <a href="./html/shop/fortnite.html" class="cat-card">
-        <img src="./images/banners/fortnite.png" alt="Fortnite" loading="lazy" decoding="async" />
-        <span>Fortnite</span>
-      </a>
-      <a href="./html/shop/cod.html" class="cat-card">
-        <img src="./images/banners/cod.png" alt="Call of Duty" loading="lazy" decoding="async" />
-        <span>Call of Duty</span>
-      </a>
-      <a href="./html/shop/rdo.html" class="cat-card">
-        <img src="./images/banners/rdo.png" alt="Red Dead Online" loading="lazy" decoding="async" />
-        <span>Red Dead Online</span>
-      </a>
-      <a href="./html/shop/rocket.html" class="cat-card">
-        <img src="./images/banners/rocket.png" alt="Rocket League" loading="lazy" decoding="async" />
-        <span>Rocket League</span>
-      </a>
-      <a href="./html/shop/psn.html" class="cat-card">
-        <img src="./images/banners/psn.png" alt="PSN Guthaben" loading="lazy" decoding="async" />
-        <span>PSN Guthaben</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ⭐ HIGHLIGHTS -->
-  <section class="highlights">
-    <h2>Warum TEAM LAZER?</h2>
-    <div class="features">
-      <div class="feature">
-        <i class="fa-solid fa-shield"></i>
-        <h4>Sicher & zuverlässig</h4>
-        <p>Erprobte Abläufe, Schutz deiner Accounts &amp; Diskretion.</p>
-      </div>
-      <div class="feature">
-        <i class="fa-solid fa-bolt"></i>
-        <h4>Blitzschnelle Lieferung</h4>
-        <p>Viele Bestellungen werden in unter 30 Minuten abgewickelt.</p>
-      </div>
-      <div class="feature">
-        <i class="fa-solid fa-tags"></i>
-        <h4>Beste Preise</h4>
-        <p>Faire Angebote, keine versteckten Kosten – echtes Gaming-Value.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 💬 CHAT BUTTON -->
-  <button id="chatButton" class="chat-button" aria-label="Chat öffnen">
-    <i class="fa-solid fa-comments"></i>
-  </button>
-
-  <div id="chatPopup" class="chat-popup" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="chatTitle">
-    <div class="chat-header">
-      <h4 id="chatTitle">Live-Support</h4>
-      <button id="closeChat" aria-label="Chat schließen">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="msg bot">👋 Hey! Wie können wir dir helfen?</div>
-    </div>
-    <form id="chatForm" class="chat-form" novalidate>
-      <input type="text" id="chatInput" placeholder="Nachricht eingeben …" autocomplete="off" />
-      <button type="submit" aria-label="Nachricht senden">
-        <i class="fa-solid fa-paper-plane"></i>
-      </button>
-    </form>
   </div>
 
-  <!-- ⚙️ FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col brand">
-        <img src="./images/tl-logo-nobg.png" alt="TEAM LAZER Logo" />
-        <p>Mods, Accounts &amp; Guthaben – powered by Gaming Community.</p>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content fade-in">
+      <div class="hero-text">
+        <span class="hero-tag">⚡ INSTANT DELIVERY</span>
+        <h1>Dominiere dein <br><span class="highlight">Lieblingsgame</span></h1>
+        <p>Wir bieten dir die besten Accounts, Boosts und Mods für GTA V, CoD & mehr. <br>Kein Bann-Risiko. Persönlicher Support.</p>
+        <div class="hero-btns">
+          <a href="#shop" class="btn btn-primary">Jetzt shoppen <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="btn btn-secondary"><i class="fa-brands fa-discord"></i> Discord Joinen</a>
+        </div>
+        
+        <div class="payment-icons">
+          <i class="fa-brands fa-cc-paypal"></i>
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <span class="secure-text"><i class="fa-solid fa-lock"></i> SSL Secured</span>
+        </div>
+      </div>
+      <div class="hero-visual desktop-only">
+        </div>
+    </div>
+  </section>
+
+  <section id="shop" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2>Wähle dein <span class="highlight">Game</span></h2>
+        <p class="muted">Klicke auf eine Kategorie, um alle Angebote zu sehen.</p>
       </div>
 
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <a href="./html/shop.html">Alle Produkte</a>
-        <a href="./html/shop/gta.html">GTA V</a>
-        <a href="./html/shop/fortnite.html">Fortnite</a>
-        <a href="./html/shop/psn.html">PSN Guthaben</a>
-      </div>
+      <div class="category-grid" id="categoryGrid">
+        
+        <a href="./html/shop/gta.html" class="game-card" data-name="gta v grand theft auto money">
+          <div class="img-wrapper">
+            <img src="./images/banners/gta.png" alt="GTA V Boosting" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="game-icon"><i class="fa-solid fa-car"></i></div>
+            <div>
+              <h3>GTA V Online</h3>
+              <p>Money, Rank & Unlocks</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+          </div>
+        </a>
 
-      <div class="footer-col">
-        <h4>Info</h4>
-        <a href="./html/about.html">Über uns</a>
-        <a href="./html/contact.html">Kontakt</a>
-        <a href="./html/faq.html">FAQ</a>
-      </div>
+        <a href="./html/shop/fortnite.html" class="game-card" data-name="fortnite vbucks skins">
+          <div class="img-wrapper">
+            <img src="./images/banners/fortnite.png" alt="Fortnite" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="game-icon"><i class="fa-solid fa-gun"></i></div>
+            <div>
+              <h3>Fortnite</h3>
+              <p>V-Bucks & Bundles</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+          </div>
+        </a>
 
-      <div class="footer-col">
-        <h4>Rechtliches</h4>
-        <a href="./html/impressum.html">Impressum</a>
-        <a href="./html/agb.html">AGB</a>
-        <a href="./html/datenschutz.html">Datenschutz</a>
+        <a href="./html/shop/cod.html" class="game-card" data-name="call of duty cod mw3 warzone">
+          <div class="img-wrapper">
+            <img src="./images/banners/cod.png" alt="Call of Duty" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="game-icon"><i class="fa-solid fa-skull"></i></div>
+            <div>
+              <h3>Call of Duty</h3>
+              <p>Unlock All & Camos</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+          </div>
+        </a>
+
+        <div class="game-card disabled" data-name="red dead redemption rdo">
+          <div class="img-wrapper grayscale">
+            <img src="./images/banners/rdo.png" alt="RDO" loading="lazy" />
+            <span class="coming-soon-badge">DEMNÄCHST</span>
+          </div>
+          <div class="card-info">
+            <div class="game-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
+            <div>
+              <h3>Red Dead Online</h3>
+              <p>In Entwicklung</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-card disabled" data-name="psn playstation guthaben">
+          <div class="img-wrapper grayscale">
+            <img src="./images/banners/psn.png" alt="PSN" loading="lazy" />
+            <span class="coming-soon-badge">DEMNÄCHST</span>
+          </div>
+          <div class="card-info">
+            <div class="game-icon"><i class="fa-brands fa-playstation"></i></div>
+            <div>
+              <h3>PSN Cards</h3>
+              <p>Guthaben</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <p class="copyright">© 2025 TEAM LAZER · Alle Rechte vorbehalten</p>
+  </section>
+
+  <section class="section-bg section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2>So einfach <span class="highlight">funktioniert's</span></h2>
+      </div>
+      <div class="steps-wrapper">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <h3>Paket wählen</h3>
+          <p>Such dir aus, was du brauchst. Wir haben Pakete für jedes Budget.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <h3>Daten eingeben</h3>
+          <p>Sichere Abwicklung über unser System oder Übergabe via Discord.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <h3>Zocken!</h3>
+          <p>Lehn dich zurück. In der Regel sind wir in 30 Min fertig.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-padding">
+    <div class="container small-container">
+      <div class="section-header">
+        <h2>Häufige <span class="highlight">Fragen</span></h2>
+      </div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Ist das Ganze sicher vor Banns?</button>
+          <div class="accordion-body">
+            Ja! Wir nutzen private Methoden, die seit Jahren unentdeckt sind ("Undetected"). Wir testen jeden Patch.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Wie lange dauert die Lieferung?</button>
+          <div class="accordion-body">
+            Normalerweise dauert ein Auftrag zwischen 15 und 60 Minuten, sobald wir deine Daten erhalten haben.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Welche Zahlungsmethoden akzeptiert ihr?</button>
+          <div class="accordion-body">
+            Wir akzeptieren PayPal, Kreditkarte, Sofortüberweisung und teilweise Paysafecard (auf Anfrage im Discord).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chat-widget">
+    <button id="chatToggle" class="chat-toggle-btn">
+      <i class="fa-solid fa-comment-dots"></i>
+      <span class="online-dot"></span>
+    </button>
+    
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div class="agent-info">
+          <img src="./images/tl-logo-nobg.png" alt="Support" />
+          <div>
+            <strong>Lazer Bot</strong>
+            <span>Online</span>
+          </div>
+        </div>
+        <button id="chatClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot">
+          Moin! 👋 Willkommen bei Team Lazer. Wobei kann ich dir helfen?
+        </div>
+        <div class="chat-options">
+          <button onclick="sendQuickReply('lieferzeit')">🚚 Lieferzeit?</button>
+          <button onclick="sendQuickReply('sicherheit')">🛡️ Ist das sicher?</button>
+          <button onclick="sendQuickReply('human')">👤 Ich brauche einen Menschen</button>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="userChatInput" placeholder="Nachricht..." />
+        <button id="sendMessage"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="./images/tl-logo-nobg.png" alt="Logo" class="footer-logo" />
+          <p>Team Lazer ist dein professioneller Partner für Gaming-Dienstleistungen. Wir stehen für Qualität und Sicherheit Made in Germany.</p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="./html/shop/gta.html">GTA V</a></li>
+            <li><a href="./html/shop/cod.html">Call of Duty</a></li>
+            <li><a href="./html/shop/fortnite.html">Fortnite</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="./html/impressum.html">Impressum</a></li>
+            <li><a href="./html/datenschutz.html">Datenschutz</a></li>
+            <li><a href="./html/agb.html">AGB</a></li>
+            <li><a href="./html/widerruf.html">Widerrufsrecht</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="./html/contact.html">Kontaktformular</a></li>
+            <li><a href="#">Status Page</a></li>
+            <li><a href="#">Discord Support</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 TEAM LAZER. All rights reserved. Not affiliated with Rockstar Games, Activision or Epic Games.</p>
+        <div class="payment-methods">
+          <i class="fa-brands fa-paypal"></i>
+          <i class="fa-brands fa-apple-pay"></i>
+          <i class="fa-brands fa-google-pay"></i>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="./script/main.js" defer></script>
+  <script src="./script/main.js"></script>
 </body>
 </html>
