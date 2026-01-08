@@ -1,5 +1,5 @@
 /* =========================================
-   TEAM LAZER - COMMUNITY STYLE (Fixed BG)
+   TEAM LAZER - COMMUNITY STYLE
    ========================================= */
 
 :root {
@@ -25,10 +25,10 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   padding-top: var(--header-height);
-  position: relative; /* Wichtig für positioning */
+  position: relative;
 }
 
-/* --- BACKGROUND (RESTORED) --- */
+/* --- BACKGROUND --- */
 .global-bg {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
   background-color: #05000a;
@@ -45,7 +45,7 @@ body {
   pointer-events: none;
 }
 
-.global-bg::after { /* Top Right Nebula (Wieder da!) */
+.global-bg::after { /* Top Right Nebula */
   content: ''; position: absolute; top: -20%; right: -20%;
   width: 70vw; height: 70vh;
   background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
@@ -87,16 +87,43 @@ img { max-width: 100%; display: block; }
 .social-icon-nav:hover { color: var(--primary) !important; transform: scale(1.2); }
 .burger-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-/* --- HERO --- */
-.hero { min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+/* --- HERO & NEW STATS CARD --- */
+.hero { min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 40px; }
+.hero-content { display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%; }
+
+.hero-text { flex: 1; max-width: 600px; }
 .hero-tag { 
   background: rgba(124, 58, 237, 0.15); color: var(--primary); padding: 6px 12px; 
   border-radius: 6px; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; border: 1px solid rgba(124, 58, 237, 0.3);
   display: inline-block; margin-bottom: 20px;
 }
 .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-.hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
 .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+
+/* Stats Card im Hero */
+.hero-visual { flex: 0 0 auto; display: flex; justify-content: center; }
+.stats-card {
+  background: rgba(20, 20, 30, 0.4); 
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 30px;
+  min-width: 280px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: transform 0.3s;
+}
+.stats-card:hover { transform: perspective(1000px) rotateY(0deg); border-color: var(--primary-glow); }
+
+.stat-row { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+.stat-icon {
+  width: 50px; height: 50px; background: rgba(124, 58, 237, 0.15); color: var(--primary);
+  border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem;
+}
+.stat-data h3 { font-size: 1.8rem; color: #fff; line-height: 1; }
+.stat-data p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+.stat-separator { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin: 15px 0; }
 
 .btn { padding: 14px 28px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; transition: 0.3s; }
 .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 0 20px var(--primary-glow); }
@@ -105,12 +132,6 @@ img { max-width: 100%; display: block; }
 .btn-secondary:hover { background: rgba(255,255,255,0.1); color: var(--primary); border-color: var(--primary); }
 .glow-anim { animation: btnGlow 3s infinite; }
 @keyframes btnGlow { 0%, 100% { box-shadow: 0 0 10px var(--primary-glow); } 50% { box-shadow: 0 0 25px var(--primary); } }
-
-/* --- STATS SECTION --- */
-.stats-section { padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3); }
-.stats-grid { display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 30px; }
-.stat-item h3 { font-size: 3rem; color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); margin-bottom: 5px; }
-.stat-item p { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
 /* --- GAME CARDS (Grid) --- */
 .section-header { text-align: center; margin-bottom: 60px; }
@@ -190,7 +211,13 @@ footer { background: #050005; border-top: 1px solid rgba(255,255,255,0.05); padd
 @media (max-width: 900px) {
   .nav-links, .desktop-only { display: none !important; }
   .burger-btn { display: block; }
+  .hero { flex-direction: column; text-align: center; min-height: auto; padding-bottom: 40px; }
+  .hero-content { flex-direction: column; gap: 30px; }
+  .hero-btns { justify-content: center; }
   .hero h1 { font-size: 2.8rem; }
+  .hero-visual { width: 100%; }
+  .stats-card { width: 100%; transform: none; }
+  
   .footer-top { grid-template-columns: 1fr; text-align: center; }
   .social-links { justify-content: center; }
 }
