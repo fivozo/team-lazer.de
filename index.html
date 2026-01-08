@@ -19,6 +19,16 @@
 
   <div class="global-bg"></div>
 
+  <div class="scroll-ladder desktop-only">
+    <div class="ladder-line">
+      <div class="ladder-energy" id="ladderEnergy"></div>
+    </div>
+    <div class="ladder-dot active" data-target="#home" title="Start"></div>
+    <div class="ladder-dot" data-target="#network" title="Universum"></div>
+    <div class="ladder-dot" data-target="#features" title="Über uns"></div>
+    <div class="ladder-dot" data-target="#join" title="Join"></div>
+  </div>
+
   <header class="navbar" id="navbar">
     <div class="container nav-container">
       <a class="nav-logo" href="index.html">
@@ -28,9 +38,9 @@
 
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
-        <a href="#features">Über uns</a> <a href="#network" class="cyber-hover" data-text="Platzhalter">Platzhalter</a>
-        
-        <a href="https://discord.gg/DEINLINK" target="_blank" class="chat-hover">Platzhalter</a>
+        <a href="#features">Über uns</a>
+        <a href="#network" class="cyber-hover">Netzwerk</a>
+        <a href="https://discord.gg/DEINLINK" target="_blank" class="chat-hover">Discord</a>
       </nav>
 
       <div class="nav-actions">
@@ -47,11 +57,11 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" class="mobile-link active"><i class="fa-solid fa-house"></i> Home</a>
     <a href="#features" class="mobile-link"><i class="fa-solid fa-star"></i> Über uns</a>
-    <a href="#network" class="mobile-link"><i class="fa-solid fa-users"></i> Platzhalter</a>
-    <a href="https://discord.gg/DEINLINK" target="_blank" class="mobile-link"><i class="fa-brands fa-discord"></i> Platzhalter</a>
+    <a href="#network" class="mobile-link"><i class="fa-solid fa-users"></i> Netzwerk</a>
+    <a href="https://discord.gg/DEINLINK" target="_blank" class="mobile-link"><i class="fa-brands fa-discord"></i> Discord</a>
   </div>
 
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="container hero-content fade-in-up">
       <div class="hero-text">
         <span class="hero-tag">⚡ NEXT LEVEL GAMING</span>
@@ -69,7 +79,6 @@
       
       <div class="hero-visual">
         <div class="stats-card glass-panel">
-          
           <div class="stat-row">
             <div class="stat-icon"><i class="fa-brands fa-discord"></i></div>
             <div class="stat-data">
@@ -77,9 +86,7 @@
               <p>Mitglieder</p>
             </div>
           </div>
-          
           <div class="stat-separator"></div>
-
           <div class="stat-row">
             <div class="stat-icon"><i class="fa-solid fa-code-branch"></i></div>
             <div class="stat-data">
@@ -87,9 +94,7 @@
               <p>Projekte</p>
             </div>
           </div>
-
           <div class="stat-separator"></div>
-
           <div class="stat-row">
             <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
             <div class="stat-data">
@@ -97,32 +102,56 @@
               <p>Kundenzufriedenheit</p>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </section>
 
   <section id="network" class="section-padding">
     <div class="container">
       <div class="section-header scroll-reveal">
-        <h2>Unser <span class="highlight">Universum</span></h2>
-        <p class="muted">Alles, was Gamer und Server-Owner brauchen.</p>
+        <h2>Unser <span class="highlight">Ökosystem</span></h2>
+        <p class="muted">Drei Säulen. Ein Ziel.</p>
       </div>
-      <div class="category-grid">
-        <a href="https://youtube.com/@DEINKANAL" target="_blank" class="game-card scroll-reveal">
-          <div class="img-wrapper"><img src="./images/banners/cod.webp" alt="Entertainment" loading="lazy" /><div class="overlay-icon"><i class="fa-brands fa-youtube"></i></div></div>
-          <div class="card-info"><div><h3>Entertainment</h3><p>Täglicher Content & Highlights.</p></div><i class="fa-solid fa-play arrow"></i></div>
+
+      <div class="universe-grid">
+        
+        <a href="https://youtube.com/@DEINKANAL" target="_blank" class="universe-card scroll-reveal color-1">
+          <div class="u-icon-wrapper">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <div class="u-content">
+            <h3>Entertainment</h3>
+            <p>High-End Content Creator. <br>Tutorials, Highlights & Live-Events.</p>
+            <span class="u-link">Kanal entdecken <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="u-bg-glow"></div>
         </a>
-        <a href="https://discord.gg/DEINLINK" target="_blank" class="game-card scroll-reveal delay-1">
-          <div class="img-wrapper"><img src="./images/banners/gta.webp" alt="Marktplatz" loading="lazy" /><div class="overlay-icon"><i class="fa-brands fa-discord"></i></div></div>
-          <div class="card-info"><div><h3>Community Hub</h3><p>Tickets für Accounts & Support.</p></div><i class="fa-solid fa-users arrow"></i></div>
+
+        <a href="https://discord.gg/DEINLINK" target="_blank" class="universe-card scroll-reveal delay-1 color-2">
+          <div class="u-icon-wrapper">
+            <i class="fa-brands fa-discord"></i>
+          </div>
+          <div class="u-content">
+            <h3>Der Hub</h3>
+            <p>Der Treffpunkt für alles. <br>Support, Handel & Community Talk.</p>
+            <span class="u-link">Beitreten <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="u-bg-glow"></div>
         </a>
-        <div class="game-card scroll-reveal delay-2 cursor-default">
-          <div class="img-wrapper"><img src="./images/banners/rocket.webp" alt="Coding" loading="lazy" /><div class="overlay-icon"><i class="fa-solid fa-terminal"></i></div></div>
-          <div class="card-info"><div><h3>Code Factory</h3><p>Wir entwickeln deinen Wunsch-Bot.</p></div></div>
+
+        <div class="universe-card scroll-reveal delay-2 color-3 cursor-default">
+          <div class="u-icon-wrapper">
+            <i class="fa-solid fa-terminal"></i>
+          </div>
+          <div class="u-content">
+            <h3>Development</h3>
+            <p>Custom Bots & Software. <br>Wir programmieren die Zukunft.</p>
+            <span class="u-link">Mehr Infos <i class="fa-solid fa-code"></i></span>
+          </div>
+          <div class="u-bg-glow"></div>
         </div>
+
       </div>
     </div>
   </section>
@@ -138,7 +167,7 @@
     </div>
   </section>
 
-  <section class="cta-section scroll-reveal">
+  <section class="cta-section scroll-reveal" id="join">
     <div class="container cta-content">
       <h2>Werde Teil der Bewegung</h2>
       <p>Über 400 Mitglieder warten auf dich.</p>
