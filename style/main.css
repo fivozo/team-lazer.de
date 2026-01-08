@@ -53,57 +53,112 @@ body {
 @keyframes gridFloat { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
 @keyframes cornerPulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 1.0; transform: scale(1.2); } }
 
-/* --- SCROLL LADDER (PC ONLY) --- */
+/* --- SCROLL LADDER (UPDATED: JUMP & PULSE) --- */
 .scroll-ladder {
   position: fixed;
-  left: 40px; /* Abstand vom linken Rand */
+  left: 40px; 
   top: 50%;
   transform: translateY(-50%);
-  height: 400px;
-  width: 20px;
+  height: 50vh; /* KÜRZER GEMACHT */
+  width: 40px; /* Breiterer Container für den Sprung */
   z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  pointer-events: none; /* Klicks gehen durch, Dots haben pointer-events: all */
 }
 
 .ladder-line {
   position: absolute;
-  top: 0; bottom: 0; left: 50%;
+  top: 0; bottom: 0; left: 50%; /* Mittig im Container */
   width: 2px;
   background: rgba(255,255,255,0.1);
   transform: translateX(-50%);
   border-radius: 2px;
-  overflow: visible; /* Damit die Energy Ball sichtbar ist */
+  z-index: 1;
 }
 
+/* Der Scroll-Punkt (Energie) */
 .ladder-energy {
   position: absolute;
-  left: 50%;
-  top: 0; /* Wird per JS gesteuert */
-  width: 10px; height: 10px;
-  background: #00ffff; /* Cyan Energy Color */
+  left: 50%; /* Startet auf der Linie */
+  width: 12px; height: 12px;
+  background: var(--primary); /* LILA statt Cyan */
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-  transition: top 0.1s linear; /* Smooth movement */
+  box-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+  z-index: 3;
+  /* Basis-Transition für vertikale Bewegung */
+  transition: top 0.6s cubic-bezier(0.5, 0, 0.3, 1); 
+}
+
+/* Pulsieren wenn er ruht */
+.ladder-energy.pulsing {
+  animation: energyPulse 2s infinite;
+}
+
+/* Der Sprung (Bogen-Bewegung) */
+.ladder-energy.jumping {
+  animation: jumpArc 0.6s linear; /* Horizontaler Sprung */
+}
+
+/* Effekt beim Ankommen (Ripple) */
+.ladder-energy.landed::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
+  background: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rippleEffect 0.6s ease-out forwards;
 }
 
 .ladder-dot {
-  width: 12px; height: 12px;
-  background: var(--bg-dark);
-  border: 2px solid rgba(255,255,255,0.3);
+  width: 18px; height: 18px;
+  background: transparent; /* INNEN HOHL */
+  border: 2px solid rgba(255,255,255,0.2);
   border-radius: 50%;
   z-index: 2;
   cursor: pointer;
   transition: 0.3s;
   position: relative;
+  pointer-events: all; /* Klickbar machen */
+  box-sizing: border-box;
 }
 
-.ladder-dot:hover { border-color: var(--primary); transform: scale(1.2); }
-.ladder-dot.active { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 10px var(--primary); }
+.ladder-dot:hover { 
+  border-color: var(--primary); 
+  transform: scale(1.1); 
+}
 
+/* Wenn aktiv, nur Rahmen leuchtet */
+.ladder-dot.active { 
+  border-color: var(--primary); 
+  box-shadow: 0 0 10px var(--primary-glow);
+  transform: scale(1.2);
+}
+
+/* --- ANIMATIONEN FÜR LEITER --- */
+
+@keyframes jumpArc {
+  0% { transform: translate(-50%, -50%) translateX(0); }
+  50% { transform: translate(-50%, -50%) translateX(25px); } /* Springt nach rechts raus */
+  100% { transform: translate(-50%, -50%) translateX(0); }
+}
+
+@keyframes energyPulse {
+  0% { box-shadow: 0 0 10px var(--primary); transform: translate(-50%, -50%) scale(1); }
+  50% { box-shadow: 0 0 25px var(--primary); transform: translate(-50%, -50%) scale(1.3); }
+  100% { box-shadow: 0 0 10px var(--primary); transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes rippleEffect {
+  0% { width: 100%; height: 100%; opacity: 1; border-width: 2px; }
+  100% { width: 300%; height: 300%; opacity: 0; border-width: 0px; }
+}
 /* --- TYPOGRAPHY & LAYOUT --- */
 h1, h2, h3, .logo-text, .counter { font-family: 'Rajdhani', sans-serif; text-transform: uppercase; font-weight: 700; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
