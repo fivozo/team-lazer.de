@@ -25,22 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  // Alle relevanten Klassen beobachten
-  document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .accordion-item').forEach(el => observer.observe(el));
+  document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right').forEach(el => observer.observe(el));
 
-  // --- FAQ ACCORDION ---
-  const accHeaders = document.querySelectorAll('.accordion-header');
-  accHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
-      item.classList.toggle('active');
-    });
-  });
-
-  // --- CART LOGIC REMOVED (Website Mode) ---
-  // Code für cartTrigger, closeCart, cartSidebar wurde entfernt.
-
-  // --- CHATBOT ---
+  // --- CHATBOT (Angepasst für Community/Services) ---
   const chatToggle = document.getElementById('chatToggle');
   const chatWindow = document.getElementById('chatWindow');
   const chatClose = document.getElementById('chatClose');
@@ -53,37 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.sendQuickReply = (type) => {
     let reply = "";
-    let senderName = "TL Bot";
-    let userText = "Frage";
+    let senderName = "Team Lazer";
+    let userText = "";
 
-    // Neue Logik für normale Website
-    if(type === 'support') {
-        reply = "Unser Support-Team ist täglich auf Discord erreichbar. Erstelle einfach ein Ticket!";
-        userText = "Support?";
+    if(type === 'discord') {
+      userText = "Wo finde ich euren Discord?";
+      reply = "Klick einfach oben rechts auf 'Join Discord' oder schau in die Links im Footer! Wir freuen uns auf dich.";
     }
-    if(type === 'community') {
-        reply = "Wir sind eine Gaming-Community mit Fokus auf GTA, CoD und mehr. Jeder ist willkommen!";
-        userText = "Community?";
+    if(type === 'bots') {
+      userText = "Ich brauche einen Bot.";
+      reply = "Cool! Wir programmieren Custom Bots für Discord und Minecraft. Komm auf unseren Server und erstell ein Ticket für eine Anfrage.";
     }
-    if(type === 'human') {
-      reply = "Verstanden. Bitte komm auf unseren Discord, ein Admin kümmert sich um dich.";
-      userText = "Mensch?";
+    if(type === 'boosts') {
+      userText = "Verkauft ihr Accounts?";
+      reply = "Ja, wir bieten sichere Accounts, Boosts und Unlocks für diverse Games an. Schreib uns im Discord für aktuelle Angebote.";
     }
-    
+
     addUserMessage(userText);
-
     setTimeout(() => {
       addBotMessage(reply, senderName);
     }, 600);
   };
 
-  // Manuelles Senden
   sendMessageBtn?.addEventListener('click', () => {
     const text = userChatInput.value.trim();
     if(text) {
       addUserMessage(text);
       userChatInput.value = "";
-      setTimeout(() => addBotMessage("Ich bin nur ein Bot. Bitte nutze Discord für direkten Kontakt.", "TL Bot"), 800);
+      setTimeout(() => addBotMessage("Am schnellsten erreichst du uns direkt über Discord!", "Team Lazer"), 800);
     }
   });
 
