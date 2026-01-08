@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  // Alle relevanten Klassen beobachten (Cards, Steps, FAQ)
+  // Alle relevanten Klassen beobachten
   document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .accordion-item').forEach(el => observer.observe(el));
 
   // --- FAQ ACCORDION ---
@@ -33,26 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   accHeaders.forEach(header => {
     header.addEventListener('click', () => {
       const item = header.parentElement;
-      // Optional: Andere schließen
-      // document.querySelectorAll('.accordion-item').forEach(i => { if(i !== item) i.classList.remove('active'); });
       item.classList.toggle('active');
     });
   });
 
-  // --- CART SLIDEBOARD ---
-  const cartTrigger = document.getElementById('cartTrigger');
-  const closeCart = document.getElementById('closeCart');
-  const cartSidebar = document.getElementById('cartSidebar');
-  const cartOverlay = document.getElementById('cartOverlay');
-
-  function toggleCart() {
-    cartSidebar.classList.toggle('active');
-    cartOverlay.classList.toggle('active');
-  }
-
-  cartTrigger?.addEventListener('click', toggleCart);
-  closeCart?.addEventListener('click', toggleCart);
-  cartOverlay?.addEventListener('click', toggleCart);
+  // --- CART LOGIC REMOVED (Website Mode) ---
+  // Code für cartTrigger, closeCart, cartSidebar wurde entfernt.
 
   // --- CHATBOT ---
   const chatToggle = document.getElementById('chatToggle');
@@ -68,20 +54,22 @@ document.addEventListener('DOMContentLoaded', () => {
   window.sendQuickReply = (type) => {
     let reply = "";
     let senderName = "TL Bot";
+    let userText = "Frage";
 
-    if(type === 'lieferzeit') reply = "Die Bearbeitungszeit variiert zwischen 30 Minuten (kleine Boosts) und bis zu 5 Tagen (große Account-Pakete).";
-    if(type === 'sicherheit') reply = "Unsere Methoden sind 'undetected'. Wir testen jeden Patch umfangreich, bevor wir Accounts ausliefern.";
-    
-    // Human Request
+    // Neue Logik für normale Website
+    if(type === 'support') {
+        reply = "Unser Support-Team ist täglich auf Discord erreichbar. Erstelle einfach ein Ticket!";
+        userText = "Support?";
+    }
+    if(type === 'community') {
+        reply = "Wir sind eine Gaming-Community mit Fokus auf GTA, CoD und mehr. Jeder ist willkommen!";
+        userText = "Community?";
+    }
     if(type === 'human') {
-      reply = "Verstanden. Bitte komm auf unseren Discord und öffne ein Ticket, ein Mitarbeiter kümmert sich sofort um dich.";
+      reply = "Verstanden. Bitte komm auf unseren Discord, ein Admin kümmert sich um dich.";
+      userText = "Mensch?";
     }
     
-    let userText = "Frage";
-    if(type === 'lieferzeit') userText = "Lieferzeit?";
-    if(type === 'sicherheit') userText = "Sicherheit?";
-    if(type === 'human') userText = "Mensch?";
-
     addUserMessage(userText);
 
     setTimeout(() => {
@@ -95,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(text) {
       addUserMessage(text);
       userChatInput.value = "";
-      setTimeout(() => addBotMessage("Ich bin nur ein Bot. Bitte nutze die Buttons oder Discord für Support.", "TL Bot"), 800);
+      setTimeout(() => addBotMessage("Ich bin nur ein Bot. Bitte nutze Discord für direkten Kontakt.", "TL Bot"), 800);
     }
   });
 
