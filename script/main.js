@@ -61,38 +61,115 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- SCROLL LADDER LOGIC (Jump & Crazy Man) ---
+  // --- SCROLL LADDER LOGIC (Jump, Pulse & Custom Stick Man) ---
   const ladderEnergy = document.getElementById('ladderEnergy');
   const ladderDots = document.querySelectorAll('.ladder-dot');
   
   if (ladderEnergy && window.innerWidth > 900) {
     
     let lastSectionId = "";
-    let idleTimer = null; // Timer für Männchen
+    let idleTimer = null;
+    let despawnTimer = null;
+
+    // Funktion: Männlein aktivieren
+    const spawnLittleMan = () => {
+      // Nur spawnen, wenn er nicht schon da ist oder gerade geht
+      if (!ladderEnergy.classList.contains('little-man') && !ladderEnergy.classList.contains('exiting')) {
+        ladderEnergy.classList.add('little-man');
+      }
+    };
+
+    // Funktion: Männlein entfernen (mit Animation)
+    const despawnLittleMan = () => {
+      // Wenn das Männlein aktiv ist und noch nicht im "Exiting" Modus
+      if (ladderEnergy.classList.contains('little-man') && !ladderEnergy.classList.contains('exiting')) {
+        
+        // 1. Exiting Animation starten
+        ladderEnergy.classList.add('exiting');
+        
+        // 2. Warten bis Animation vorbei ist (400ms laut CSS), dann Klassen entfernen
+        clearTimeout(despawnTimer);
+        despawnTimer = setTimeout(() => {
+          ladderEnergy.classList.remove('little-man');
+          ladderEnergy.classList.remove('exiting');
+          
+          // Original Pulse wiederherstellen, falls wir noch auf dem Dot stehen
+          ladderEnergy.classList.add('pulsing'); 
+        }, 400); // Zeit muss zur CSS animation: despawnMan passen
+      } else {
+        // Fallback: Timer resetten, falls wir scrollen während wir schon warten
+        clearTimeout(idleTimer);
+      }
+    };
 
     const updateLadder = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
-      // 1. RESET CRAZY MAN
+      // A) User scrollt -> Männlein muss weg
+      despawnLittleMan();
+      
+      // B) Neuen Idle Timer setzen (5 Sekunden Ruhe -> Spawn)
       clearTimeout(idleTimer);
-      ladderEnergy.classList.remove('little-man');
-      
-      // 2. NEUEN TIMER STARTEN (5 Sekunden Ruhe)
-      idleTimer = setTimeout(() => {
-        ladderEnergy.classList.add('little-man');
-      }, 5000);
+      idleTimer = setTimeout(spawnLittleMan, 5000);
 
-      // 3. Finde aktive Sektion
+      // C) Normale Leiter Logik (Position finden)
       let currentSectionId = "home"; 
-      
       document.querySelectorAll('section').forEach(section => {
         const sectionTop = section.offsetTop;
-        // Wenn Sektion sichtbar wird
         if (scrollY >= (sectionTop - windowHeight/2)) {
           currentSectionId = section.getAttribute('id');
         }
       });
+
+      if (currentSectionId !== lastSectionId) {
+        lastSectionId = currentSectionId;
+        
+        ladderDots.forEach(dot => {
+          const target = dot.getAttribute('data-target').substring(1);
+          
+          if (target === currentSectionId) {
+            dot.classList.add('active');
+            
+            const dotTop = dot.offsetTop;
+            const dotHeight = dot.offsetHeight;
+            const centerPos = dotTop + (dotHeight / 2);
+
+            // Bewegung
+            // Wir entfernen kurz 'pulsing', damit der Sprung sauber aussieht
+            if(!ladderEnergy.classList.contains('little-man')) {
+                ladderEnergy.classList.remove('pulsing');
+                ladderEnergy.classList.remove('landed');
+                void ladderEnergy.offsetWidth; // Reflow
+                ladderEnergy.classList.add('jumping');
+            }
+            
+            ladderEnergy.style.top = centerPos + 'px';
+
+            setTimeout(() => {
+              ladderEnergy.classList.remove('jumping');
+              ladderEnergy.classList.add('landed');
+              if(!ladderEnergy.classList.contains('little-man')) {
+                  ladderEnergy.classList.add('pulsing');
+              }
+            }, 600);
+
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    };
+
+    // Init
+    setTimeout(() => updateLadder(), 100);
+    window.addEventListener('scroll', updateLadder);
+
+    // Klick Handler
+    ladderDots.forEach(dot => {
+      dot.addEventListener('click', () => { /* ... wie gehabt ... */ });
+    });
+  }
 
       if (currentSectionId !== lastSectionId) {
         lastSectionId = currentSectionId;
