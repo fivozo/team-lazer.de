@@ -1,129 +1,121 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  // --- MOBILE MENU & STANDARD ANIMATIONS (Code beibehalten...) ---
-  // (Füge hier deinen bestehenden Code für Burger Menu, Scroll Reveal etc. ein)
+  // --- MOBILE MENU ---
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  burgerBtn?.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
   
+  burgerBtn?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    const icon = burgerBtn.querySelector('i');
+    if (mobileMenu.classList.contains('active')) {
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-xmark');
+    } else {
+      icon.classList.remove('fa-xmark');
+      icon.classList.add('fa-bars');
+    }
+  });
+
+  // --- SCROLL ANIMATIONS ---
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        if(entry.target.querySelector('.counter')) startCounters();
       }
     });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .stats-card, .universe-card, .feature-box').forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
 
-  let countersStarted = false;
-  function startCounters() { /* (Dein Counter Code hier) */ 
-    if(countersStarted) return; countersStarted = true;
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => { /* ... */ }); // (Kürz ich hier ab, lass deinen drin)
-  }
+  // Alle relevanten Klassen beobachten (Cards, Steps, FAQ)
+  document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .accordion-item').forEach(el => observer.observe(el));
 
-  // --- SCROLL LADDER LOGIC (JUMP & PULSE) ---
-  const ladderEnergy = document.getElementById('ladderEnergy');
-  const ladderDots = document.querySelectorAll('.ladder-dot');
-  
-  if (ladderEnergy && window.innerWidth > 900) {
-    
-    let lastSectionId = "";
-    let isJumping = false;
-
-    const updateLadder = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      // Finde die aktuell aktive Sektion
-      let currentSectionId = "home"; // Default Start
-      
-      document.querySelectorAll('section').forEach(section => {
-        const sectionTop = section.offsetTop;
-        // Sektion ist aktiv, wenn sie die Mitte des Screens erreicht
-        if (scrollY >= (sectionTop - windowHeight/2)) {
-          currentSectionId = section.getAttribute('id');
-        }
-      });
-
-      // Nur updaten, wenn sich die Sektion geändert hat
-      if (currentSectionId !== lastSectionId) {
-        lastSectionId = currentSectionId;
-        
-        ladderDots.forEach(dot => {
-          const target = dot.getAttribute('data-target').substring(1);
-          
-          if (target === currentSectionId) {
-            dot.classList.add('active');
-            
-            // --- SPRUNG LOGIK ---
-            // Berechne exakte Mitte des Dots
-            const dotTop = dot.offsetTop;
-            const dotHeight = dot.offsetHeight;
-            // Da ladderEnergy transform(-50%, -50%) hat, setzen wir top auf die Mitte des Dots
-            const centerPos = dotTop + (dotHeight / 2);
-
-            // 1. Reset Classes
-            ladderEnergy.classList.remove('pulsing');
-            ladderEnergy.classList.remove('landed');
-            
-            // 2. Trigger Jump
-            // Trick: Reflow erzwingen um Animation neu zu starten
-            void ladderEnergy.offsetWidth; 
-            ladderEnergy.classList.add('jumping');
-            
-            // 3. Move Vertical
-            ladderEnergy.style.top = centerPos + 'px';
-
-            // 4. Nach Landung (600ms = Transition Zeit)
-            setTimeout(() => {
-              ladderEnergy.classList.remove('jumping');
-              ladderEnergy.classList.add('landed'); // Macht "Puff" Effekt
-              ladderEnergy.classList.add('pulsing'); // Startet Pulsieren
-            }, 600);
-
-          } else {
-            dot.classList.remove('active');
-          }
-        });
-      }
-    };
-
-    // Initiale Position setzen (ohne Animation beim Laden)
-    setTimeout(() => updateLadder(), 100);
-    
-    window.addEventListener('scroll', updateLadder);
-
-    // Klick auf Dots
-    ladderDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const targetId = dot.getAttribute('data-target');
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-          window.scrollTo({
-            top: targetSection.offsetTop - 100,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  }
-
-  // --- SMOOTH SCROLL (Allgemein) ---
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      mobileMenu.classList.remove('active');
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      if(targetSection){
-          window.scrollTo({
-            top: targetSection.offsetTop - 80,
-            behavior: 'smooth'
-          });
-      }
+  // --- FAQ ACCORDION ---
+  const accHeaders = document.querySelectorAll('.accordion-header');
+  accHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      // Optional: Andere schließen
+      // document.querySelectorAll('.accordion-item').forEach(i => { if(i !== item) i.classList.remove('active'); });
+      item.classList.toggle('active');
     });
   });
 
+  // --- CART SLIDEBOARD ---
+  const cartTrigger = document.getElementById('cartTrigger');
+  const closeCart = document.getElementById('closeCart');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+
+  function toggleCart() {
+    cartSidebar.classList.toggle('active');
+    cartOverlay.classList.toggle('active');
+  }
+
+  cartTrigger?.addEventListener('click', toggleCart);
+  closeCart?.addEventListener('click', toggleCart);
+  cartOverlay?.addEventListener('click', toggleCart);
+
+  // --- CHATBOT ---
+  const chatToggle = document.getElementById('chatToggle');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatMessages = document.getElementById('chatMessages');
+  const userChatInput = document.getElementById('userChatInput');
+  const sendMessageBtn = document.getElementById('sendMessage');
+
+  chatToggle?.addEventListener('click', () => chatWindow.classList.add('active'));
+  chatClose?.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+  window.sendQuickReply = (type) => {
+    let reply = "";
+    let senderName = "TL Bot";
+
+    if(type === 'lieferzeit') reply = "Die Bearbeitungszeit variiert zwischen 30 Minuten (kleine Boosts) und bis zu 5 Tagen (große Account-Pakete).";
+    if(type === 'sicherheit') reply = "Unsere Methoden sind 'undetected'. Wir testen jeden Patch umfangreich, bevor wir Accounts ausliefern.";
+    
+    // Human Request
+    if(type === 'human') {
+      reply = "Verstanden. Bitte komm auf unseren Discord und öffne ein Ticket, ein Mitarbeiter kümmert sich sofort um dich.";
+    }
+    
+    let userText = "Frage";
+    if(type === 'lieferzeit') userText = "Lieferzeit?";
+    if(type === 'sicherheit') userText = "Sicherheit?";
+    if(type === 'human') userText = "Mensch?";
+
+    addUserMessage(userText);
+
+    setTimeout(() => {
+      addBotMessage(reply, senderName);
+    }, 600);
+  };
+
+  // Manuelles Senden
+  sendMessageBtn?.addEventListener('click', () => {
+    const text = userChatInput.value.trim();
+    if(text) {
+      addUserMessage(text);
+      userChatInput.value = "";
+      setTimeout(() => addBotMessage("Ich bin nur ein Bot. Bitte nutze die Buttons oder Discord für Support.", "TL Bot"), 800);
+    }
+  });
+
+  userChatInput?.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') sendMessageBtn.click();
+  });
+
+  function addUserMessage(text) {
+    const userContainer = document.createElement('div');
+    userContainer.className = 'msg-container user';
+    userContainer.innerHTML = `<span class="msg-sender">Du</span><div class="msg user">${text}</div>`;
+    chatMessages.appendChild(userContainer);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addBotMessage(text, sender) {
+    const botContainer = document.createElement('div');
+    botContainer.className = 'msg-container bot';
+    botContainer.innerHTML = `<span class="msg-sender">${sender}</span><div class="msg bot">${text}</div>`;
+    chatMessages.appendChild(botContainer);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 });
