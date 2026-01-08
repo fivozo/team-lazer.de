@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns | TEAM LAZER</title>
+  
+  <link rel="stylesheet" href="../style/global.css" />
+  <link rel="stylesheet" href="../style/about.css" />
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="global-bg"></div>
+  <div id="tileContainer" class="tile-container"></div>
+
+  <div class="scroll-ladder desktop-only">
+    <div class="ladder-line"></div>
+    <div class="ladder-indicator" id="scrollIndicator"></div>
+    <div class="ladder-dot active" data-target="#intro"></div>
+    <div class="ladder-dot" data-target="#story"></div>
+    <div class="ladder-dot" data-target="#team"></div>
+    <div class="ladder-dot" data-target="#faq"></div>
+    <div class="ladder-dot" data-target="#join"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a class="nav-logo" href="../index.html">
+        <img src="../images/tl-logo-nobg.webp" alt="Logo" />
+        <span class="logo-text">TEAM LAZER</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="about.html" class="active">Über uns</a>
+        <a href="contact.html">Kontakt</a>
+        <a href="https://discord.gg/DEINLINK" target="_blank" class="chat-hover">Discord</a>
+      </nav>
+      <button class="burger-btn" id="burgerBtn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html" class="mobile-link">Home</a>
+    <a href="about.html" class="mobile-link active">Über uns</a>
+    <a href="contact.html" class="mobile-link">Kontakt</a>
+  </div>
+
+  <section id="intro" class="hero small-hero">
+    <div class="container text-center fade-in-up">
+      <span class="hero-tag">INSIDE THE CODE</span>
+      <h1>TEAM LAZER <span class="highlight">CORE</span></h1>
+      <p>Die Köpfe hinter dem Projekt. Kompakt. Direkt.</p>
+    </div>
+  </section>
+
+  <section id="story" class="section-padding">
+    <div class="container text-center scroll-reveal">
+      <h2>Unsere <span class="highlight">Story</span></h2>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">Gegründet aus der Leidenschaft für Gaming, gewachsen durch Vertrauen. Wir sind seit 2020 eine Instanz für Qualität.</p>
+    </div>
+  </section>
+
+  <section id="team" class="section-padding bg-darker">
+    <div class="container">
+      <div class="section-header text-center"><h2>Active <span class="highlight">Roster</span></h2></div>
+      
+      <div class="team-grid">
+        <div class="team-card rank-purple scroll-reveal">
+          <div class="card-head">
+            <h3>Fivozo</h3><span class="badge">OWNER</span>
+          </div>
+          <p>Product Lead • Developer • Design</p>
+        </div>
+        <div class="team-card rank-purple scroll-reveal delay-1">
+          <div class="card-head">
+            <h3>Wizzard Gaming</h3><span class="badge">CO-OWNER</span>
+          </div>
+          <p>Product Manager • Service</p>
+        </div>
+
+        <div class="team-card rank-green scroll-reveal delay-2">
+          <div class="card-head">
+            <h3>Username</h3><span class="badge">DEV</span>
+          </div>
+          <p>Java • Backend Systems</p>
+        </div>
+        <div class="team-card rank-green scroll-reveal delay-3">
+          <div class="card-head">
+            <h3>Username</h3><span class="badge">DEV</span>
+          </div>
+          <p>Web Frontend • API</p>
+        </div>
+
+        <div class="team-card rank-blue scroll-reveal delay-4">
+          <div class="card-head">
+            <h3>Umbra</h3><span class="badge">MOD</span>
+          </div>
+          <p>Community Support</p>
+        </div>
+        <div class="team-card rank-blue scroll-reveal delay-5">
+          <div class="card-head">
+            <h3>Username</h3><span class="badge">MOD</span>
+          </div>
+          <p>Ticket Management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center"><h2>FAQ</h2></div>
+      <div class="accordion-wrapper">
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Wie joine ich?</span><i class="fa-solid fa-chevron-down"></i></div>
+          <div class="accordion-content"><p>Klicke einfach auf den Discord Button oben.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Sucht ihr Leute?</span><i class="fa-solid fa-chevron-down"></i></div>
+          <div class="accordion-content"><p>Ja, Bewerbungen sind im Discord offen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" class="cta-section scroll-reveal">
+    <div class="container text-center">
+      <h2>Bereit?</h2>
+      <a href="https://discord.gg/DEINLINK" class="btn btn-primary glow-anim">Los geht's</a>
+    </div>
+  </section>
+
+  <footer><div class="container text-center"><p>&copy; 2026 TEAM LAZER.</p></div></footer>
+
+  <script src="../script/main.js"></script>
+  <script src="../script/ladder.js"></script>
+</body>
+</html>
