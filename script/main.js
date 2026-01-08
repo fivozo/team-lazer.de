@@ -1,109 +1,99 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  // --- MOBILE MENU ---
+  // --- MOBILE MENU & STANDARD ANIMATIONS (Code beibehalten...) ---
+  // (Füge hier deinen bestehenden Code für Burger Menu, Scroll Reveal etc. ein)
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn?.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
   
-  burgerBtn?.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    const icon = burgerBtn.querySelector('i');
-    if (mobileMenu.classList.contains('active')) {
-      icon.classList.remove('fa-bars');
-      icon.classList.add('fa-xmark');
-    } else {
-      icon.classList.remove('fa-xmark');
-      icon.classList.add('fa-bars');
-    }
-  });
-
-  // --- SCROLL ANIMATIONS ---
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        if(entry.target.querySelector('.counter')) {
-            startCounters();
-        }
+        if(entry.target.querySelector('.counter')) startCounters();
       }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .stats-card, .universe-card, .feature-box').forEach(el => observer.observe(el));
 
-  // --- COUNTER ANIMATION ---
   let countersStarted = false;
-  function startCounters() {
-    if(countersStarted) return;
-    countersStarted = true;
-    
+  function startCounters() { /* (Dein Counter Code hier) */ 
+    if(countersStarted) return; countersStarted = true;
     const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-      const target = parseFloat(counter.getAttribute('data-target'));
-      const suffix = counter.getAttribute('data-suffix') || "";
-      const decimals = parseInt(counter.getAttribute('data-decimals')) || 0;
-      
-      const duration = 2000; 
-      const stepTime = 20;
-      const steps = duration / stepTime;
-      const increment = target / steps;
-      
-      let current = 0;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if(current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        let formattedNumber = current.toFixed(decimals).replace('.', ',');
-        counter.innerText = formattedNumber + suffix;
-      }, stepTime);
-    });
+    counters.forEach(counter => { /* ... */ }); // (Kürz ich hier ab, lass deinen drin)
   }
 
-  // --- SCROLL LADDER LOGIC (Jumping Energy) ---
+  // --- SCROLL LADDER LOGIC (JUMP & PULSE) ---
   const ladderEnergy = document.getElementById('ladderEnergy');
   const ladderDots = document.querySelectorAll('.ladder-dot');
   
   if (ladderEnergy && window.innerWidth > 900) {
     
+    let lastSectionId = "";
+    let isJumping = false;
+
     const updateLadder = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
       // Finde die aktuell aktive Sektion
-      let currentSectionId = "home"; // Default
+      let currentSectionId = "home"; // Default Start
       
       document.querySelectorAll('section').forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        // Wenn die Sektion mindestens zur Hälfte sichtbar ist oder wir oben sind
+        // Sektion ist aktiv, wenn sie die Mitte des Screens erreicht
         if (scrollY >= (sectionTop - windowHeight/2)) {
           currentSectionId = section.getAttribute('id');
         }
       });
 
-      // Update Dots & Jump Energy
-      ladderDots.forEach(dot => {
-        const target = dot.getAttribute('data-target').substring(1); // z.B. "home"
+      // Nur updaten, wenn sich die Sektion geändert hat
+      if (currentSectionId !== lastSectionId) {
+        lastSectionId = currentSectionId;
         
-        if (target === currentSectionId) {
-          dot.classList.add('active');
+        ladderDots.forEach(dot => {
+          const target = dot.getAttribute('data-target').substring(1);
           
-          // Berechne Position für den Sprung
-          // Position des Dots relativ zum Leiter-Container
-          const dotTop = dot.offsetTop;
-          ladderEnergy.style.top = dotTop + 'px';
-          
-        } else {
-          dot.classList.remove('active');
-        }
-      });
+          if (target === currentSectionId) {
+            dot.classList.add('active');
+            
+            // --- SPRUNG LOGIK ---
+            // Berechne exakte Mitte des Dots
+            const dotTop = dot.offsetTop;
+            const dotHeight = dot.offsetHeight;
+            // Da ladderEnergy transform(-50%, -50%) hat, setzen wir top auf die Mitte des Dots
+            const centerPos = dotTop + (dotHeight / 2);
+
+            // 1. Reset Classes
+            ladderEnergy.classList.remove('pulsing');
+            ladderEnergy.classList.remove('landed');
+            
+            // 2. Trigger Jump
+            // Trick: Reflow erzwingen um Animation neu zu starten
+            void ladderEnergy.offsetWidth; 
+            ladderEnergy.classList.add('jumping');
+            
+            // 3. Move Vertical
+            ladderEnergy.style.top = centerPos + 'px';
+
+            // 4. Nach Landung (600ms = Transition Zeit)
+            setTimeout(() => {
+              ladderEnergy.classList.remove('jumping');
+              ladderEnergy.classList.add('landed'); // Macht "Puff" Effekt
+              ladderEnergy.classList.add('pulsing'); // Startet Pulsieren
+            }, 600);
+
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
     };
 
+    // Initiale Position setzen (ohne Animation beim Laden)
+    setTimeout(() => updateLadder(), 100);
+    
     window.addEventListener('scroll', updateLadder);
-    updateLadder(); // Init call
 
     // Klick auf Dots
     ladderDots.forEach(dot => {
