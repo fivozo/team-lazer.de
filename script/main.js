@@ -1,21 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // MENU
+  // Mobile Menu
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if(burgerBtn) {
     burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
   }
 
-  // ANIMATIONS
+  // Scroll Animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.scroll-reveal, .fade-in-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('.scroll-reveal, .slide-left, .slide-right, .stats-card, .universe-card, .feature-box').forEach(el => observer.observe(el));
 
-  // COUNTER (für Home)
+  // Counter
   const counters = document.querySelectorAll('.counter');
   counters.forEach(counter => {
     const target = parseFloat(counter.getAttribute('data-target'));
@@ -28,29 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
         counter.innerText = count.toFixed(decimals).replace('.', ',') + suffix;
         requestAnimationFrame(update);
       } else {
-        counter.innerText = target.toString().replace('.', ',') + suffix;
+        counter.innerText = target + suffix;
       }
     };
     update();
   });
-
-  // ACCORDION (für About)
+  
+  // Accordion (About)
   const accHeaders = document.querySelectorAll('.accordion-header');
   accHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      header.parentElement.classList.toggle('active');
-    });
+    header.addEventListener('click', () => header.parentElement.classList.toggle('active'));
   });
 
-  // TILES (für About)
+  // Tile Spawner (About)
   const tileContainer = document.getElementById('tileContainer');
   if(tileContainer) {
     setInterval(() => {
       const tile = document.createElement('div');
       tile.className = 'bg-tile';
       const size = Math.random() * 40 + 20;
-      tile.style.width = size + 'px';
-      tile.style.height = size + 'px';
+      tile.style.width = size + 'px'; tile.style.height = size + 'px';
       tile.style.left = Math.random() * 100 + 'vw';
       tile.style.animationDuration = (Math.random() * 10 + 15) + 's';
       tileContainer.appendChild(tile);
