@@ -10,6 +10,7 @@
 
   <link rel="icon" type="image/webp" href="./images/tl-logo-nobg.webp" />
   <link rel="stylesheet" href="./style/main.css" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
@@ -29,16 +30,15 @@
 
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">Über uns</a>
+        <a href="#features">Features</a>
+        <a href="#community">Community</a>
         <a href="https://discord.gg/DEINLINK" target="_blank">Discord</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="https://youtube.com/@DEINKANAL" target="_blank" class="desktop-only" style="color: #fff; font-size: 1.2rem; margin-right: 15px;">
+        <a href="https://youtube.com/@DEINKANAL" target="_blank" class="desktop-only social-icon-nav">
           <i class="fa-brands fa-youtube"></i>
         </a>
-        
         <button class="burger-btn" id="burgerBtn" aria-label="Menü">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -48,10 +48,9 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" class="mobile-link active"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="#services" class="mobile-link"><i class="fa-solid fa-layer-group"></i> Was wir machen</a>
-    <a href="#about" class="mobile-link"><i class="fa-solid fa-users"></i> Über uns</a>
+    <a href="#features" class="mobile-link"><i class="fa-solid fa-star"></i> Features</a>
+    <a href="#community" class="mobile-link"><i class="fa-solid fa-users"></i> Community</a>
     <a href="https://discord.gg/DEINLINK" target="_blank" class="mobile-link"><i class="fa-brands fa-discord"></i> Discord</a>
-    <a href="https://youtube.com/@DEINKANAL" target="_blank" class="mobile-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
   </div>
 
   <section class="hero">
@@ -59,7 +58,7 @@
       <div class="hero-text">
         <span class="hero-tag">⚡ GAMING. CODING. COMMUNITY.</span>
         <h1>Willkommen bei <br><span class="highlight">TEAM LAZER</span></h1>
-        <p>Wir sind mehr als nur Gamer. Wir programmieren Discord- & Minecraft-Bots, erstellen Content auf YouTube und bieten euch die besten Accounts & Boosts für eure Lieblingsspiele.</p>
+        <p>Wir sind mehr als nur Gamer. Wir entwickeln Bots, erstellen Content und bieten euch über Discord exklusive Services für eure Lieblingsspiele an.</p>
         <div class="hero-btns">
           <a href="https://discord.gg/DEINLINK" target="_blank" class="btn btn-primary glow-anim">
             <i class="fa-brands fa-discord"></i> Join Discord
@@ -73,11 +72,28 @@
     </div>
   </section>
 
-  <section id="services" class="section-padding">
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-item scroll-reveal delay-1">
+        <h3 class="counter" data-target="5000">0</h3>
+        <p>Discord Member</p>
+      </div>
+      <div class="stat-item scroll-reveal delay-2">
+        <h3 class="counter" data-target="150">0</h3>
+        <p>Custom Bots</p>
+      </div>
+      <div class="stat-item scroll-reveal delay-3">
+        <h3 class="counter" data-target="100">0</h3>
+        <p>% Zufriedenheit</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="section-padding">
     <div class="container">
       <div class="section-header scroll-reveal">
-        <h2>Das bietet <span class="highlight">Team Lazer</span></h2>
-        <p class="muted">Von der Community für die Community.</p>
+        <h2>Entdecke <span class="highlight">Team Lazer</span></h2>
+        <p class="muted">Alles was du brauchst an einem Ort.</p>
       </div>
 
       <div class="category-grid">
@@ -85,53 +101,40 @@
         <a href="https://youtube.com/@DEINKANAL" target="_blank" class="game-card scroll-reveal">
           <div class="img-wrapper">
             <img src="./images/banners/cod.webp" alt="YouTube Content" loading="lazy" />
+            <div class="overlay-icon"><i class="fa-brands fa-youtube"></i></div>
           </div>
           <div class="card-info">
-            <div class="game-icon"><i class="fa-brands fa-youtube"></i></div>
             <div>
               <h3>YouTube Content</h3>
               <p>Gameplay, Tutorials & Highlights.</p>
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+            <i class="fa-solid fa-arrow-right arrow"></i>
           </div>
         </a>
 
         <a href="https://discord.gg/DEINLINK" target="_blank" class="game-card scroll-reveal delay-1">
           <div class="img-wrapper">
             <img src="./images/banners/gta.webp" alt="Discord Community" loading="lazy" />
+            <div class="overlay-icon"><i class="fa-brands fa-discord"></i></div>
           </div>
           <div class="card-info">
-            <div class="game-icon"><i class="fa-brands fa-discord"></i></div>
             <div>
-              <h3>Unsere Community</h3>
-              <p>Events, Gewinnspiele & Talk.</p>
+              <h3>Community & Shop</h3>
+              <p>Accounts & Boosts direkt via Ticket.</p>
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+            <i class="fa-solid fa-arrow-right arrow"></i>
           </div>
         </a>
 
-        <div class="game-card scroll-reveal delay-2" style="cursor: default;">
+        <div class="game-card scroll-reveal delay-2 cursor-default">
           <div class="img-wrapper">
             <img src="./images/banners/rocket.webp" alt="Development" loading="lazy" />
+            <div class="overlay-icon"><i class="fa-solid fa-code"></i></div>
           </div>
           <div class="card-info">
-            <div class="game-icon"><i class="fa-solid fa-code"></i></div>
             <div>
               <h3>Bot Development</h3>
-              <p>Wir coden deine DC & MC Bots.</p>
-            </div>
-            </div>
-        </div>
-
-        <div class="game-card scroll-reveal" style="cursor: default;">
-          <div class="img-wrapper">
-            <img src="./images/banners/psn.webp" alt="Gaming Services" loading="lazy" />
-          </div>
-          <div class="card-info">
-            <div class="game-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div>
-              <h3>Gaming Services</h3>
-              <p>Accounts, Boosts & Unlocks (PSN, CoD, GTA).</p>
+              <p>Custom Coding für DC & Minecraft.</p>
             </div>
           </div>
         </div>
@@ -140,83 +143,50 @@
     </div>
   </section>
 
-  <section id="about" class="section-padding">
+  <section id="features" class="section-padding bg-darker">
     <div class="container">
       <div class="section-header scroll-reveal">
-        <h2>Wer wir <span class="highlight">sind</span></h2>
-        <p class="muted" style="max-width: 600px; margin: 0 auto;">
-          Team Lazer wurde gegründet, um Gamern das beste Erlebnis zu bieten. 
-          Egal ob du Hilfe im Game brauchst, einen eigenen Bot für deinen Server suchst oder einfach nur zocken willst – bei uns bist du richtig.
-        </p>
+        <h2>Warum <span class="highlight">Wir?</span></h2>
       </div>
-
-      <div class="steps-wrapper" style="margin-top: 50px;">
-        
-        <div class="step-item slide-left">
-          <div class="step-num" style="font-size: 2rem; top: 20px;"><i class="fa-solid fa-code"></i></div>
-          <h3>Developer</h3>
-          <p>Wir programmieren professionelle Minecraft- und Discord-Bots, die genau auf deine Wünsche zugeschnitten sind.</p>
+      
+      <div class="features-wrapper">
+        <div class="feature-box slide-left">
+          <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Sicherheit</h3>
+          <p>Unsere Methoden für Boosts und Accounts sind getestet und sicher. Kein Bann-Risiko.</p>
         </div>
 
-        <div class="step-item scroll-reveal delay-1">
-          <div class="step-num" style="font-size: 2rem; top: 20px;"><i class="fa-solid fa-gamepad"></i></div>
-          <h3>Gamer</h3>
-          <p>Wir bieten legitime Boosts, Accounts und Währungen für GTA V, CoD, Fortnite und PSN an.</p>
+        <div class="feature-box scroll-reveal delay-1">
+          <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Schnelligkeit</h3>
+          <p>Tickets im Discord werden in kürzester Zeit bearbeitet. Wir lassen dich nicht warten.</p>
         </div>
 
-        <div class="step-item slide-right delay-2">
-          <div class="step-num" style="font-size: 2rem; top: 20px;"><i class="fa-solid fa-users"></i></div>
-          <h3>Community</h3>
-          <p>Auf unseren Servern findest du immer Mitspieler, Hilfe und spannende Events.</p>
+        <div class="feature-box slide-right delay-2">
+          <div class="icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3>Community First</h3>
+          <p>Wir hören auf euch. Eure Wünsche bestimmen unseren Content und unsere Bots.</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <div class="chat-widget">
-    <button id="chatToggle" class="chat-toggle-btn pulse-anim">
-      <i class="fa-solid fa-message"></i>
-      <span class="online-dot-outer"></span>
-    </button>
-    
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-header">
-        <div class="agent-info">
-          <img src="./images/tl-logo-nobg.webp" alt="Team Lazer" />
-          <div>
-            <strong>Team Lazer</strong>
-            <span class="status-indicator"><span class="status-dot"></span> Online</span>
-          </div>
-        </div>
-        <button id="chatClose" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg-container bot">
-          <span class="msg-sender">Team Lazer</span>
-          <div class="msg bot">
-            Hey! 👋 <br>Interesse an Bots, Accounts oder willst du einfach mitzocken?
-          </div>
-        </div>
-        <div class="chat-options">
-          <button onclick="sendQuickReply('discord')">💬 Zum Discord</button>
-          <button onclick="sendQuickReply('bots')">🤖 Bot Programmierung</button>
-          <button onclick="sendQuickReply('boosts')">🚀 Accounts & Boosts</button>
-        </div>
-      </div>
-      <div class="chat-input-area">
-        <input type="text" id="userChatInput" placeholder="Schreib uns..." />
-        <button id="sendMessage"><i class="fa-solid fa-paper-plane"></i></button>
-      </div>
+  <section class="cta-section scroll-reveal">
+    <div class="container cta-content">
+      <h2>Bereit durchzustarten?</h2>
+      <p>Komm auf unseren Server, eröffne ein Ticket für Services oder chatte einfach mit uns.</p>
+      <a href="https://discord.gg/DEINLINK" target="_blank" class="btn btn-primary glow-anim scale-hover">
+        Jetzt beitreten <i class="fa-solid fa-rocket"></i>
+      </a>
     </div>
-  </div>
+  </section>
 
   <footer>
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
           <img src="./images/tl-logo-nobg.webp" alt="Logo" class="footer-logo" />
-          <p>Development, Gaming & Community.</p>
+          <p>Dein Partner für Gaming & Code.</p>
           <div class="social-links">
             <a href="#" target="_blank"><i class="fa-brands fa-discord"></i></a>
             <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
@@ -226,11 +196,11 @@
         </div>
         
         <div class="footer-links">
-          <h4>Bereiche</h4>
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="#services">Bot Development</a></li>
-            <li><a href="#services">Gaming Services</a></li>
-            <li><a href="#about">Über uns</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="https://discord.gg/DEINLINK">Support</a></li>
           </ul>
         </div>
 
