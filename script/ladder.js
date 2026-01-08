@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const indicator = document.getElementById('scrollIndicator');
   const dots = document.querySelectorAll('.ladder-dot');
   
-  if(!ladder) return; // Exit if not present
+  if(!ladder) return; 
 
   const updateLadder = () => {
     const scrollY = window.scrollY;
     const windowH = window.innerHeight;
-    let currentId = "";
+    let currentId = dots[0].getAttribute('data-target').substring(1);
 
     document.querySelectorAll('section').forEach(sec => {
       if(scrollY >= (sec.offsetTop - windowH/2)) {
@@ -16,14 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    if(!currentId && dots.length > 0) currentId = dots[0].getAttribute('data-target').substring(1);
-
     dots.forEach(dot => {
       const target = dot.getAttribute('data-target').substring(1);
       if(target === currentId) {
         dot.classList.add('active');
-        const topPos = dot.offsetTop + (dot.offsetHeight/2);
-        indicator.style.top = topPos + 'px';
+        const centerPos = dot.offsetTop + (dot.offsetHeight/2);
+        
+        // Reset Animation
+        indicator.classList.remove('landed', 'active');
+        void indicator.offsetWidth; // Trigger Reflow
+        indicator.classList.add('jumping');
+        
+        indicator.style.top = centerPos + 'px';
+        
+        setTimeout(() => {
+           indicator.classList.remove('jumping');
+           indicator.classList.add('landed');
+           indicator.classList.add('active'); // Pulse
+        }, 600);
       } else {
         dot.classList.remove('active');
       }
@@ -31,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', updateLadder);
-  setTimeout(updateLadder, 100); // Init
+  setTimeout(updateLadder, 100);
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
