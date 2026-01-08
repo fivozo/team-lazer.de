@@ -105,55 +105,88 @@ body {
   animation: rippleEffect 0.6s ease-out forwards;
 }
 
-/* DAS MÄNNCHEN (Easter Egg) */
+/* --- LEITER EASTER EGG (CUSTOM STICK MAN) --- */
+
+/* Basis-Container für das Männlein */
 .ladder-energy.little-man {
-  background: transparent !important; box-shadow: none !important; animation: none !important;
-}
-.ladder-energy.little-man::after {
-  content: '🤪'; /* Emoji */
-  font-size: 24px; position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: crazyManAction 2s infinite ease-in-out;
-  border: none; /* Kein Border beim Männchen */
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 30px; 
+  height: 40px; /* Größerer Bereich für Bewegung */
+  transform-origin: center center;
+  /* Entstehungs-Animation + danach Endlos-Bewegung */
+  animation: spawnMan 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             randomWiggle 3s infinite ease-in-out 0.5s;
 }
 
-/* Sektions-Punkte (Hohl) */
-.ladder-dot {
-  width: 18px; height: 18px;
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.2);
+/* Verschwinde-Animation (wird per JS getriggert) */
+.ladder-energy.little-man.exiting {
+  animation: despawnMan 0.4s ease-in forwards !important;
+}
+
+/* --- DAS MÄNNLEIN ZEICHNEN (CSS ONLY) --- */
+
+/* Der Kopf (::before) */
+.ladder-energy.little-man::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
+  background: var(--primary);
   border-radius: 50%;
-  z-index: 2;
-  cursor: pointer;
-  transition: 0.3s;
-  pointer-events: all; /* Punkte bleiben klickbar */
-  position: relative;
-  box-sizing: border-box;
+  box-shadow: 0 0 5px var(--primary);
 }
-.ladder-dot:hover { border-color: var(--primary); transform: scale(1.1); }
-.ladder-dot.active { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); transform: scale(1.2); }
 
-/* Animationen */
-@keyframes jumpArc {
-  0% { transform: translate(-50%, -50%) translateX(0); }
-  50% { transform: translate(-50%, -50%) translateX(25px); } 
-  100% { transform: translate(-50%, -50%) translateX(0); }
+/* Körper, Arme, Beine (::after mit Gradients) */
+.ladder-energy.little-man::after {
+  content: '';
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 24px; height: 24px; /* Bereich für Körper */
+  
+  /* Wir malen das Männlein mit Linien (Gradients) */
+  background: 
+    /* Körper (Vertikale Linie) */
+    linear-gradient(to bottom, var(--primary) 0%, var(--primary) 100%) center top / 3px 15px no-repeat,
+    /* Arme (Horizontale Linie) */
+    linear-gradient(to right, var(--primary) 0%, var(--primary) 100%) center 4px / 20px 3px no-repeat,
+    /* Linkes Bein (Schräg via Rotation schwer, wir nutzen Conic oder simple Gradients) */
+    /* Einfacher Trick für Beine: Ein umgedrehtes V ist schwer mit gradients. 
+       Wir nutzen stattdessen zwei schräge Linien */
+    linear-gradient(150deg, transparent 45%, var(--primary) 45%, var(--primary) 55%, transparent 55%) 0 12px / 50% 12px no-repeat, /* Bein L */
+    linear-gradient(-150deg, transparent 45%, var(--primary) 45%, var(--primary) 55%, transparent 55%) 100% 12px / 50% 12px no-repeat; /* Bein R */
 }
-@keyframes energyPulse {
-  0% { box-shadow: 0 0 10px var(--primary); transform: translate(-50%, -50%) scale(1); }
-  50% { box-shadow: 0 0 25px var(--primary); transform: translate(-50%, -50%) scale(1.3); }
-  100% { box-shadow: 0 0 10px var(--primary); transform: translate(-50%, -50%) scale(1); }
+
+/* --- ANIMATIONEN --- */
+
+/* 1. Entstehen (Pop up) */
+@keyframes spawnMan {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
-@keyframes rippleEffect {
-  0% { width: 100%; height: 100%; opacity: 1; border-width: 2px; }
-  100% { width: 300%; height: 300%; opacity: 0; border-width: 0px; }
+
+/* 2. Verschwinden (Schrumpfen & Wegdrehen) */
+@keyframes despawnMan {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
 }
-@keyframes crazyManAction {
+
+/* 3. Random Bewegungen (Der "Blödsinn") */
+/* Wir bewegen TranslateX/Y und Rotate wild durcheinander */
+@keyframes randomWiggle {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
-  25% { transform: translate(50%, -80%) rotate(20deg); }
-  50% { transform: translate(-100%, -20%) rotate(-20deg) scale(1.2); }
-  75% { transform: translate(80%, -50%) rotate(180deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  10% { transform: translate(-120%, -50%) rotate(-15deg); } /* Links rüber */
+  20% { transform: translate(-50%, -80%) rotate(10deg); } /* Sprung hoch */
+  30% { transform: translate(50%, -50%) rotate(5deg); } /* Mitte */
+  45% { transform: translate(180%, -20%) rotate(90deg); } /* Rechts weit raus, liegen */
+  55% { transform: translate(180%, -20%) rotate(90deg) scaleX(0.8); } /* Kurz ducken */
+  65% { transform: translate(50%, -50%) rotate(0deg); } /* Zurück rennen */
+  75% { transform: translate(-50%, -50%) scale(1.2); } /* Aufblustern */
+  85% { transform: translate(-50%, -150%) rotate(-360deg); } /* Salto hoch */
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
 }
 
 /* --- TYPOGRAPHY & LAYOUT --- */
