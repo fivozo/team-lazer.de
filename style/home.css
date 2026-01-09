@@ -1,12 +1,12 @@
 /* =========================================
-   HOME SPECIFIC STYLES
+   HOME CSS (Hero, Universe, Features)
    ========================================= */
 
 /* HERO SECTION */
 .hero { min-height: 80vh; display: flex; align-items: flex-start; padding-top: 130px; position: relative; overflow: visible; }
 .hero-content { display: flex; align-items: flex-start; justify-content: space-between; gap: 50px; width: 100%; }
 .hero-text { flex: 1; max-width: 650px; }
-.hero h1 { font-size: 4.5rem; line-height: 1.05; margin-bottom: 25px; }
+.hero h1 { font-size: 4.5rem; line-height: 1.05; margin-bottom: 25px; font-family: 'Rajdhani', sans-serif; font-weight: 700; text-transform: uppercase; }
 .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 90%; }
 .hero-tag { background: rgba(124, 58, 237, 0.15); color: var(--primary); padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; border: 1px solid rgba(124, 58, 237, 0.3); display: inline-block; margin-bottom: 25px; }
 .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -17,11 +17,11 @@
 .stats-card:hover { transform: perspective(1000px) rotateY(0deg); border-color: var(--primary-glow); }
 .stat-row { display: flex; align-items: center; gap: 20px; margin: 10px 0; justify-content: flex-start; }
 .stat-icon { width: 50px; height: 50px; background: rgba(124, 58, 237, 0.15); color: var(--primary); border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; flex-shrink: 0; }
-.stat-data h3 { font-size: 1.8rem; color: #fff; line-height: 1; }
+.stat-data h3 { font-size: 1.8rem; color: #fff; line-height: 1; font-family: 'Rajdhani', sans-serif; font-weight: 700; }
 .stat-data p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
 .stat-separator { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin: 15px 0; }
 
-/* --- UNIVERSE GRID (ICONS ONLY) --- */
+/* --- UNIVERSE GRID (MODERN ICONS) --- */
 .universe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
 .universe-card { 
@@ -74,13 +74,14 @@
 .feature-box { background: rgba(255,255,255,0.02); padding: 50px 30px; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.03); text-align: center; transition: 0.3s; }
 .feature-box:hover { background: rgba(255,255,255,0.04); border-color: var(--primary-glow); transform: translateY(-5px); }
 .icon-box { font-size: 3rem; color: var(--primary); margin-bottom: 25px; filter: drop-shadow(0 0 10px var(--primary-glow)); }
+.feature-box h3 { color: #fff; margin-bottom: 10px; }
 
 /* CTA */
 .cta-section { padding: 120px 0; text-align: center; background: linear-gradient(0deg, rgba(124, 58, 237, 0.1), transparent); }
-.cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; }
+.cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; font-family: 'Rajdhani', sans-serif; font-weight: 700; text-transform: uppercase; }
 .scale-hover:hover { transform: scale(1.05); }
 
-/* MOBILE */
+/* MOBILE HOME */
 @media (max-width: 900px) {
   .hero { min-height: auto; padding-top: 110px; padding-bottom: 60px; align-items: center; }
   .hero-content { flex-direction: column; text-align: center; gap: 40px; }
