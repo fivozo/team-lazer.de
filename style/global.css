@@ -1,5 +1,5 @@
 /* =========================================
-   GLOBAL.CSS - CORE STYLES
+   GLOBAL.CSS - CORE STYLES & FIXES
    ========================================= */
 
 :root {
@@ -85,39 +85,4 @@ button { font-family: inherit; }
 .burger-btn { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
 
 /* BUTTONS */
-.btn { padding: 14px 32px; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; border: none; transition: 0.3s; font-size: 1rem; color: #fff; font-family: 'Rajdhani', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-.btn-primary { background: var(--primary); box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); border: 1px solid var(--primary); }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 40px var(--primary), 0 0 15px #fff inset; background: #6d28d9; }
-.btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); }
-.btn-secondary:hover { border-color: var(--primary); color: var(--primary); background: rgba(124, 58, 237, 0.1); }
-.glow-anim { animation: btnPulse 3s infinite; }
-@keyframes btnPulse { 0%, 100% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); } 50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.7); } }
-
-/* ANIMATIONEN */
-.fade-in-up { animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-.scroll-reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
-.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-/* MOBILE & FOOTER */
-.mobile-menu { position: fixed; top: var(--header-height); left: 0; width: 100%; height: 0; background: rgba(5,5,10,0.95); backdrop-filter: blur(20px); z-index: 999; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.mobile-menu.active { height: auto; padding-bottom: 30px; }
-.mobile-link { font-size: 1.2rem; padding: 20px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; color: #fff; }
-
-footer { background: #050005; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0 30px; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
-.footer-logo { width: 60px; margin-bottom: 20px; display: block; }
-.social-links { display: flex; gap: 15px; margin-top: 25px; }
-.social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: 0.3s; }
-.social-links a:hover { background: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 20px var(--primary-glow); }
-.footer-links h4 { margin-bottom: 25px; color: #fff; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; font-family: 'Rajdhani', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-.footer-links a { color: var(--text-muted); transition: 0.3s; display: block; margin-bottom: 10px; }
-.footer-links a:hover { color: #fff; transform: translateX(5px); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; text-align: center; color: rgba(255,255,255,0.2); font-size: 0.9rem; }
-
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .burger-btn { display: block; }
-  .footer-top { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-  .social-links { justify-content: center; }
-}
+.btn { padding: 14px 32px; border-radius: 6px; font-weight: 700; display: inline-flex; align
