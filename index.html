@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TEAM LAZER | Community & Dev</title>
   
   <link rel="icon" type="image/webp" href="./images/tl-logo-nobg.webp" />
@@ -96,8 +96,11 @@
       </div>
     </div>
 
-    <div class="scroll-down-indicator" onclick="document.querySelector('#network').scrollIntoView({ behavior: 'smooth' });">
-      <i class="fa-solid fa-chevron-down"></i>
+    <div class="scroll-wrapper" onclick="document.querySelector('#network').scrollIntoView({ behavior: 'smooth' });">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow-down"><i class="fa-solid fa-chevron-down"></i></div>
     </div>
   </section>
 
@@ -114,7 +117,7 @@
           <div class="u-content">
             <h3>Entertainment</h3>
             <p>Täglicher Content, Highlights & Live-Events.</p>
-            <span class="u-link">Kanal entdecken <i class="fa-solid fa-arrow-right"></i></span>
+            <span class="u-link">Zum Kanal <i class="fa-solid fa-arrow-right"></i></span>
           </div>
           <div class="u-bg-glow"></div>
         </a>
