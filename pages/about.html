@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Über uns | TEAM LAZER</title>
   
-  <link rel="stylesheet" href="../style/global.css" />
-  <link rel="stylesheet" href="../style/about.css" />
+  <link rel="stylesheet" href="../style/global.css">
+  <link rel="stylesheet" href="../style/about.css">
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -20,10 +20,9 @@
     <div class="ladder-line"></div>
     <div class="ladder-indicator" id="scrollIndicator"></div>
     <div class="ladder-dot active" data-target="#intro"></div>
-    <div class="ladder-dot" data-target="#history"></div>
+    <div class="ladder-dot" data-target="#story"></div>
     <div class="ladder-dot" data-target="#team"></div>
-    <div class="ladder-dot" data-target="#values"></div>
-    <div class="ladder-dot" data-target="#faq"></div>
+    <div class="ladder-dot" data-target="#socials"></div>
   </div>
 
   <header class="navbar">
@@ -36,7 +35,6 @@
         <a href="../index.html">Home</a>
         <a href="about.html" class="active">Über uns</a>
         <a href="contact.html">Kontakt</a>
-        <a href="../index.html#network" class="cyber-hover">Netzwerk</a>
         <a href="https://discord.gg/DEINLINK" target="_blank" class="chat-hover"><i class="fa-brands fa-discord"></i> Discord</a>
       </nav>
       <button class="burger-btn" id="burgerBtn"><i class="fa-solid fa-bars"></i></button>
@@ -44,33 +42,153 @@
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="../index.html" class="mobile-link"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="about.html" class="mobile-link active"><i class="fa-solid fa-users"></i> Über uns</a>
-    <a href="contact.html" class="mobile-link"><i class="fa-solid fa-envelope"></i> Kontakt</a>
-    <a href="../index.html#network" class="mobile-link"><i class="fa-solid fa-network-wired"></i> Netzwerk</a>
-    <a href="https://discord.gg/DEINLINK" class="mobile-link"><i class="fa-brands fa-discord"></i> Discord</a>
+    <a href="../index.html" class="mobile-link">Home</a>
+    <a href="about.html" class="mobile-link active">Über uns</a>
+    <a href="contact.html" class="mobile-link">Kontakt</a>
   </div>
 
   <section id="intro" class="hero small-hero">
     <div class="container text-center fade-in-up">
-      <span class="hero-tag">INSIDE THE CODE</span>
-      <h1>TEAM LAZER <span class="highlight">CORE</span></h1>
-      <p>Die Köpfe hinter dem Projekt.</p>
+      <span class="hero-tag">BEHIND THE SCENES</span>
+      <h1>UNSERE <span class="highlight">MISSION</span></h1>
+      <p>Wir kombinieren technisches Know-how mit purer Leidenschaft für Gaming.</p>
     </div>
   </section>
   
-  <section id="history" class="section-padding"><div class="container"><h2 class="text-center">Unsere Story</h2></div></section>
-  <section id="team" class="section-padding bg-darker"><div class="container"><h2 class="text-center">Active Roster</h2></div></section>
-  <section id="values" class="section-padding"><div class="container"><h2 class="text-center">Werte</h2></div></section>
-  <section id="faq" class="section-padding"><div class="container"><h2 class="text-center">FAQ</h2></div></section>
-
-  <footer>
+  <section id="story" class="section-padding">
     <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand"><img src="../images/tl-logo-nobg.webp" alt="Logo" class="footer-logo" /><p>Gaming Excellence.</p><div class="social-links"><a href="#"><i class="fa-brands fa-discord"></i></a></div></div>
-        <div class="footer-links"><h4>Links</h4><ul><li><a href="../index.html">Home</a></li><li><a href="about.html">Über uns</a></li></ul></div>
+      <div class="split-layout">
+        <div class="scroll-reveal">
+          <h2 class="highlight">Die Story hinter Team Lazer</h2>
+          <p class="muted">Gegründet aus der Vision, Discord-Communities und Gaming-Services auf ein neues Level zu heben. Wir sind nicht nur ein Team, sondern ein Ökosystem für digitale Exzellenz.</p>
+          <br>
+          <p class="muted">Was als kleines Projekt begann, hat sich zu einem Full-Service-Provider für Developer, Designer und Gamer entwickelt.</p>
+        </div>
+        <div class="glass-box scroll-reveal delay-1">
+          <i class="fa-solid fa-rocket"></i>
+          <h3>Seit 2026</h3>
+          <p>Innovation im Dauertakt.</p>
+        </div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2026 TEAM LAZER. All rights reserved.</p></div>
+    </div>
+  </section>
+
+  <section id="team" class="section-padding bg-darker">
+    <div class="container">
+      <h2 class="text-center scroll-reveal">Das <span class="highlight">Management & Team</span></h2>
+      <div class="team-structure">
+        
+        <div class="team-row">
+          <div class="team-member purple scroll-reveal">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="fivozo">
+              <div class="tm-titles">
+                <h3>fivozo</h3>
+                <span class="badge">OWNER & FOUNDER</span>
+              </div>
+            </div>
+            <div class="tm-body">
+              <p>Developer, Designer, Service & Social Media Management.</p>
+            </div>
+          </div>
+
+          <div class="team-member purple scroll-reveal delay-1">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="wizzard">
+              <div class="tm-titles">
+                <h3>wizzard</h3>
+                <span class="badge">CO-OWNER</span>
+              </div>
+            </div>
+            <div class="tm-body">
+              <p>Service, Product Management & Business Development.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-row">
+          <div class="team-member blue scroll-reveal">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="nico">
+              <div class="tm-titles">
+                <h3>nico</h3>
+                <span class="badge">DEVELOPER & DESIGN</span>
+              </div>
+            </div>
+            <div class="tm-body">
+              <p>Discord Moderation & UI/UX Support.</p>
+            </div>
+          </div>
+
+          <div class="team-member blue scroll-reveal delay-1">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="Name">
+              <div class="tm-titles">
+                <h3>Dev-Talent</h3>
+                <span class="badge">DEVELOPER</span>
+              </div>
+            </div>
+            <div class="tm-body">
+              <p>Fullstack Development & Backend Architecture.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-row">
+          <div class="team-member green scroll-reveal">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="Mod">
+              <div class="tm-titles">
+                <h3>Moderator 1</h3>
+                <span class="badge">MODERATION</span>
+              </div>
+            </div>
+          </div>
+          <div class="team-member green scroll-reveal delay-1">
+            <div class="tm-head">
+              <img src="../images/tl-logo-nobg.webp" alt="Mod">
+              <div class="tm-titles">
+                <h3>Moderator 2</h3>
+                <span class="badge">MODERATION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="socials" class="section-padding">
+    <div class="container text-center">
+      <h2 class="scroll-reveal">Connect <span class="highlight">With Us</span></h2>
+      <div class="grid-3">
+        <a href="#" class="value-card scroll-reveal">
+          <i class="fa-brands fa-youtube"></i>
+          <h3>YouTube</h3>
+          <p>Gaming Content & Dev-Logs.</p>
+        </a>
+        <a href="#" class="value-card scroll-reveal delay-1">
+          <i class="fa-brands fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>Daily Updates & Behind the Scenes.</p>
+        </a>
+        <a href="#" class="value-card scroll-reveal delay-2">
+          <i class="fa-brands fa-whatsapp"></i>
+          <h3>WhatsApp</h3>
+          <p>Direkter Support Kanal.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-darker">
+    <div class="container text-center">
+      <p>&copy; 2026 TEAM LAZER. Built with Passion.</p>
+      <div class="social-links" style="justify-content: center; margin-top: 20px;">
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
     </div>
   </footer>
 
