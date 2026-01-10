@@ -1,10 +1,17 @@
+/* =========================================
+   MAIN.JS - SCROLL FIX & LOGIC
+   ========================================= */
+
+// --- FIX: BEI RELOAD SOFORT NACH OBEN ---
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual'; // Verbietet dem Browser, die Position zu merken
+}
+// Hartes Scrollen nach oben (bevor der Rest lädt)
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
-  // --- ZWINGEND NACH OBEN SCROLLEN BEI RELOAD ---
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-  // ----------------------------------------------
+  // Sicherheitshalber nochmal kurz nach dem Laden
+  setTimeout(() => window.scrollTo(0, 0), 10);
 
   // Mobile Menu
   const burgerBtn = document.getElementById('burgerBtn');
@@ -40,13 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
   });
   
-  // Accordion
+  // Accordion (About Page)
   const accHeaders = document.querySelectorAll('.accordion-header');
   accHeaders.forEach(header => {
     header.addEventListener('click', () => header.parentElement.classList.toggle('active'));
   });
 
-  // Tile Spawner
+  // Tile Spawner (Hintergrund Animation)
   const tileContainer = document.getElementById('tileContainer');
   if(tileContainer) {
     setInterval(() => {
