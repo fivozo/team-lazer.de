@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="ladder-line"></div>
       <div class="ladder-indicator" id="scrollIndicator"></div>
     `;
-    const newIndicator = document.getElementById('scrollIndicator');
 
     dynamicSections.forEach((sec, index) => {
       const dot = document.createElement('div');
@@ -38,34 +37,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 2. INTELLIGENTE SCROLL LOGIK ---
-  const dots = document.querySelectorAll('.ladder-dot');
-  const scrollIndicator = document.getElementById('scrollIndicator');
-
   const updateLadder = () => {
+    const dots = document.querySelectorAll('.ladder-dot');
+    const scrollIndicator = document.getElementById('scrollIndicator');
     const scrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
-    const documentHeight = document.body.offsetHeight;
     const viewportCenter = scrollY + (viewportHeight / 2);
 
     let currentId = "";
     let minDistance = Infinity;
 
-    // A) Spezialfall: Ganz unten -> Letzten Punkt erzwingen
-    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight - 50) {
+    // A) Spezialfall: Ganz unten (Threshold erhöht für Stabilität)
+    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight - 10) {
        const lastDot = dots[dots.length - 1];
        if(lastDot) currentId = lastDot.getAttribute('data-target').substring(1);
     } 
-    // B) Spezialfall: Ganz oben -> Ersten Punkt erzwingen
-    else if (scrollY < 100 && dots.length > 0) {
+    // B) Spezialfall: Ganz oben
+    else if (scrollY < 50 && dots.length > 0) {
        currentId = dots[0].getAttribute('data-target').substring(1);
     } 
     // C) Normalfall: Finde Sektion am nächsten zur Mitte
     else {
-      document.querySelectorAll('section[data-ladder-title]').forEach(sec => {
+      document.querySelectorAll('section[data-ladder-title], section[id]').forEach(sec => {
+        if(!sec.id) return;
         const rect = sec.getBoundingClientRect();
-        // Absolute Position der Sektion-Mitte im Dokument
         const secCenter = rect.top + scrollY + (rect.height / 2);
-        // Abstand zur Viewport-Mitte
         const distance = Math.abs(viewportCenter - secCenter);
 
         if (distance < minDistance) {
@@ -81,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (target === currentId) {
         dot.classList.add('active');
         if (scrollIndicator) {
-          // Soft-Transition für den Punkt
           scrollIndicator.style.top = (dot.offsetTop + 7) + 'px';
         }
       } else {
