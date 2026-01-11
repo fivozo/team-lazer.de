@@ -142,19 +142,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================
-   LIVE CHAT LOGIC (BOT -> SUPPORT)
+   LIVE CHAT LOGIC (IMPROVED TEXTS & IMAGE)
    ========================================= */
 function initLiveChat() {
+  // 1. PFAD FINDUNG FÜR BILDER (Root vs Pages)
+  const isPagesDir = window.location.pathname.includes('/pages/');
+  const imgPrefix = isPagesDir ? '../images/' : './images/';
+  const logoUrl = imgPrefix + 'tl-logo-nobg.webp';
+
   // 1. HTML INJECTION
   const chatHTML = `
     <div id="tl-chat-container">
       <div class="chat-window" id="chatWindow">
         <div class="chat-header">
           <div class="chat-partner">
-            <div class="chat-partner-avatar" id="chatAvatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="chat-partner-avatar" id="chatAvatar">
+              <img src="${logoUrl}" alt="TL Bot">
+            </div>
             <div class="chat-partner-info">
-              <h4 id="chatName">Lazer Bot</h4>
-              <span id="chatStatus">Online</span>
+              <h4 id="chatName">TEAM LAZER BOT</h4>
+              <span id="chatStatus">Online & Ready</span>
             </div>
           </div>
           <button class="chat-close" id="chatCloseBtn"><i class="fa-solid fa-xmark"></i></button>
@@ -162,24 +169,26 @@ function initLiveChat() {
         
         <div class="chat-body" id="chatBody">
           <div class="chat-msg bot">
-            Hallo! 👋 Ich bin der digitale Assistent von Team Lazer.
-            <br>Wie kann ich dir helfen?
+            Willkommen im Core von <b>TEAM LAZER</b>. ⚡
+            <br>Ich bin dein digitaler Assistent.
           </div>
           <div class="chat-msg bot">
-            Tipp: Schreib <b>"Support"</b>, um mit einem echten Menschen zu sprechen.
+            Frag mich was zu unseren Services oder schreib <b>"Support"</b>, wenn du direkt mit einem Agenten schreiben willst.
           </div>
         </div>
         
-        <div class="typing-indicator" id="typingIndicator">Lazer Bot schreibt...</div>
+        <div class="typing-indicator" id="typingIndicator">
+          <i class="fa-solid fa-circle-notch fa-spin"></i> TEAM LAZER Bot schreibt...
+        </div>
 
         <div class="chat-footer">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Nachricht..." autocomplete="off">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Deine Nachricht..." autocomplete="off">
           <button class="chat-send" id="chatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
 
       <button class="chat-toggle-btn" id="chatToggleBtn">
-        <i class="fa-solid fa-comments"></i>
+        <i class="fa-solid fa-comment-dots"></i>
       </button>
     </div>
   `;
@@ -195,11 +204,14 @@ function initLiveChat() {
   const bodyEl = document.getElementById('chatBody');
   const typingEl = document.getElementById('typingIndicator');
   
-  // Status Variables
   let isSupportMode = false;
 
   // 3. EVENTS
-  toggleBtn.addEventListener('click', () => windowEl.classList.toggle('active'));
+  toggleBtn.addEventListener('click', () => {
+    windowEl.classList.toggle('active');
+    if(windowEl.classList.contains('active')) inputEl.focus();
+  });
+  
   closeBtn.addEventListener('click', () => windowEl.classList.remove('active'));
 
   const sendMessage = () => {
@@ -235,59 +247,66 @@ function initLiveChat() {
   function showTyping(show) {
     if(show) typingEl.classList.add('visible');
     else typingEl.classList.remove('visible');
+    bodyEl.scrollTop = bodyEl.scrollHeight;
   }
 
   // --- BOT LOGIC ---
   function handleBotLogic(text) {
     showTyping(true);
     
-    // Einfache Keywords
     const lower = text.toLowerCase();
-    let reply = "Das habe ich leider nicht verstanden. Schreib 'Hilfe' für Optionen.";
+    let reply = "Das liegt außerhalb meiner Datenbank. Schreib <b>'Support'</b> für menschliche Hilfe.";
 
-    if(lower.includes('hallo') || lower.includes('hi') || lower.includes('hey')) {
-      reply = "Hey! Schön dich zu sehen. Suchst du nach einem Bot oder Design?";
-    } else if(lower.includes('preis') || lower.includes('kostet')) {
-      reply = "Unsere Preise sind individuell. Für Bots starten wir oft bei 0€ (Public) bis hin zu Custom-Lösungen.";
+    if(lower.includes('hallo') || lower.includes('hi') || lower.includes('moin')) {
+      reply = "Hey! 👋 Bereit, dein Projekt aufs nächste Level zu heben?";
+    } else if(lower.includes('preis') || lower.includes('kosten') || lower.includes('geld')) {
+      reply = "Wir machen keine Standard-Preise. Bei <b>TEAM LAZER</b> kriegst du maßgeschneiderte Lösungen. Öffne ein Ticket im Discord für ein Angebot.";
     } else if(lower.includes('discord')) {
-      reply = "Unser Discord ist der beste Ort für alles: <a href='https://discord.gg/DEINLINK' target='_blank' style='color:#4ade80;text-decoration:underline;'>Hier klicken</a>";
-    } else if(lower.includes('support') || lower.includes('hilfe') || lower.includes('mensch')) {
-      reply = "Alles klar, ich verbinde dich mit dem Support Team... 🔄";
-      setTimeout(() => switchToSupportMode(), 2000); // Trigger Support Switch
+      reply = "Join the Elite: <a href='https://discord.gg/DEINLINK' target='_blank' style='color:#4ade80;text-decoration:underline;font-weight:700;'>Hier klicken</a>";
+    } else if(lower.includes('bot') || lower.includes('dev')) {
+      reply = "Wir coden alles. Python, JS, Web-Dashboards. Was brauchst du?";
+    } else if(lower.includes('support') || lower.includes('hilfe') || lower.includes('admin')) {
+      reply = "Verstanden. Ich leite dich an unser Staff-Team weiter... 🔄";
+      setTimeout(() => switchToSupportMode(), 2000); 
+      return; // Stop standard reply
     }
 
     setTimeout(() => {
       showTyping(false);
-      if(!isSupportMode) addMessage(reply, 'bot'); // Nur senden wenn nicht gerade gewechselt wurde
-    }, 800 + Math.random() * 500); // Natürliche Verzögerung
+      addMessage(reply, 'bot');
+    }, 800 + Math.random() * 500); 
   }
 
   // --- SUPPORT SWITCH ---
   function switchToSupportMode() {
     isSupportMode = true;
-    
-    // UI Change
-    addMessage("<i>Verbinde mit Server...</i>", 'bot');
+    showTyping(true);
     
     setTimeout(() => {
       // Visuelle Änderung am Header
-      document.getElementById('chatAvatar').innerHTML = '<i class="fa-solid fa-headset"></i>';
-      document.getElementById('chatAvatar').style.background = '#e11d48'; // Rot/Pink für Support
-      document.getElementById('chatName').innerText = "Support Agent";
+      const avatarEl = document.getElementById('chatAvatar');
+      avatarEl.innerHTML = '<i class="fa-solid fa-headset"></i>';
+      avatarEl.style.borderColor = '#ef4444'; // Rot für Support
+      avatarEl.style.boxShadow = '0 0 10px rgba(239, 68, 68, 0.5)';
+      
+      const nameEl = document.getElementById('chatName');
+      nameEl.innerText = "TEAM LAZER STAFF";
+      nameEl.style.color = "#ef4444";
+
       document.getElementById('chatStatus').innerText = "Schreibt...";
       
-      addMessage("Hallo! Hier ist der Support. Wie kann ich dir weiterhelfen?", 'bot');
       showTyping(false);
-    }, 2500);
+      addMessage("Hi! Hier ist der Support. Worum geht es?", 'bot');
+    }, 2000);
   }
 
   // --- SUPPORT LOGIC (Simulation) ---
   function handleSupportLogic(text) {
     showTyping(true);
-    // Simuliert eine Antwortzeit von Menschen
+    // Simuliert Antwortzeit
     setTimeout(() => {
       showTyping(false);
-      addMessage("Danke für die Nachricht. Ein Teammitglied wird sich gleich darum kümmern. (Dies ist eine Demo)", 'bot');
-    }, 2000);
+      addMessage("Danke für die Info. Ein Admin schaut sich das gleich an. (Dies ist eine Demo-Antwort)", 'bot');
+    }, 2500);
   }
 }
