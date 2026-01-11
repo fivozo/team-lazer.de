@@ -117,34 +117,42 @@
   display: block;
 }
 
-/* --- SCROLL INDICATOR (Thin & Sleek) --- */
+/* --- SCROLL INDICATOR (Pure CSS - Professional & Thin) --- */
 .scroll-down-indicator {
   position: absolute;
-  bottom: 30px; /* Etwas tiefer für mehr Platz */
+  bottom: 40px; 
   left: 50%;
   transform: translateX(-50%);
-  
-  /* Helles Grau, nicht leuchtend */
-  color: rgba(255, 255, 255, 0.4); 
-  
   cursor: pointer;
   z-index: 10;
-  transition: 0.3s ease;
-  animation: bounce 2s infinite;
-}
-
-.scroll-down-indicator i {
-  /* Angle ist dünner, daher darf er groß sein */
-  font-size: 4rem; 
-  font-weight: normal; /* Kein extra Fett mehr */
   
-  filter: none; 
+  /* Animation für den ganzen Container */
+  animation: bounce 2s infinite;
+  
+  /* Vergrößert die Klickfläche etwas, ohne die Optik zu stören */
+  padding: 20px; 
 }
 
-/* Hover: Wird weiß und bewegt sich leicht */
-.scroll-down-indicator:hover { 
-  color: #fff; 
-  transform: translateX(-50%) translateY(3px); /* Bewegt sich beim Hover leicht nach unten */
+/* Der Pfeil selbst (Gezeichnet mit CSS) */
+.arrow-clean {
+  display: block;
+  width: 24px;  /* Größe des Pfeils */
+  height: 24px;
+  
+  /* Hier entsteht der Pfeil: Nur unten und rechts ein Rahmen */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* 2px = Dünn, 0.3 = Grau/Transparent */
+  border-right: 2px solid rgba(255, 255, 255, 0.3);
+  
+  /* Drehung um 45 Grad macht aus dem Eck einen Pfeil nach unten */
+  transform: rotate(45deg);
+  
+  transition: all 0.3s ease;
+}
+
+/* Hover Effekt: Wird weiß und etwas schärfer */
+.scroll-down-indicator:hover .arrow-clean { 
+  border-color: #ffffff;
+  transform: rotate(45deg) scale(1.1);
 }
 
 @keyframes bounce { 
