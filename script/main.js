@@ -263,7 +263,7 @@ function initLiveChat() {
         reply = "Gerne doch! 😎";
       }
       else if(lower.includes("lazer")) {
-        reply = "Team Lazer ist mehr als ein Name. Es ist ein Versprechen.";
+        reply = "TEAM LAZER ist mehr als ein Name. Es ist ein Versprechen.";
       }
       else if(lower.match(/(cool|krass|wild|stark)/)) {
         reply = "Danke! Wir geben unser Bestes. 💪";
