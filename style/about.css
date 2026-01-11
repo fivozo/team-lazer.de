@@ -4,11 +4,11 @@
 
 /* --- HERO SECTION --- */
 .small-hero {
-  min-height: 40vh; /* Etwas kompakter */
+  min-height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 140px; /* Mehr Platz für Navbar, verhindert "zu hoch scrollen" */
+  padding-top: 140px;
   padding-bottom: 60px;
   text-align: center;
   position: relative;
@@ -22,12 +22,10 @@
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  /* Fix: Kein Wackeln durch Transform/Animation hier */
   transform: none !important; 
 }
 
-/* --- BENTO GRID LAYOUT (Das Herzstück) --- */
-/* Ersetzt die langweiligen Sektionen untereinander */
+/* --- BENTO GRID LAYOUT --- */
 .bento-wrapper {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -38,9 +36,8 @@
   margin: 0 auto 100px auto;
 }
 
-/* Kachel-Basis-Style (Glass Look statt schwarz) */
 .bento-box {
-  background: rgba(255, 255, 255, 0.02); /* Sehr subtil */
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
@@ -60,24 +57,13 @@
 }
 
 /* --- GRID PLATZIERUNG --- */
-/* Vision (Groß links) */
 .box-vision { grid-column: span 8; grid-row: span 2; }
-/* Stats (Rechts daneben) */
 .box-stat-1 { grid-column: span 4; }
 .box-stat-2 { grid-column: span 4; }
-
-/* Team (Volle Breite, eigene interne Grid) */
-.box-team { grid-column: span 12; padding: 50px; background: rgba(20, 20, 30, 0.3); }
-
-/* Tech Stack (Lang, schmal) */
+.box-team { grid-column: span 12; padding: 30px; background: rgba(20, 20, 30, 0.3); } /* Weniger Padding */
 .box-tech { grid-column: span 12; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
-
-/* Timeline (Hochkant oder breit) */
 .box-timeline { grid-column: span 5; grid-row: span 2; }
-/* Gallery (Rechts daneben) */
 .box-gallery { grid-column: span 7; grid-row: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-/* FAQ & Partners */
 .box-faq { grid-column: span 8; }
 .box-partners { grid-column: span 4; text-align: center; }
 
@@ -85,48 +71,15 @@
 .bento-title { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; margin-bottom: 15px; color: #fff; font-weight: 700; }
 .bento-text { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
 
-/* Special Styles für Elemente */
 .stat-number { font-size: 3.5rem; color: var(--primary); font-family: 'Rajdhani', sans-serif; font-weight: 800; line-height: 1; }
 .stat-label { color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
-/* Team Cards (Innerhalb der Bento Box) */
-.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
-.mini-member { text-align: center; }
-.mini-member img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); margin-bottom: 15px; transition: 0.3s; }
-.mini-member:hover img { border-color: var(--primary); transform: scale(1.1); }
-.mini-member h4 { color: #fff; margin-bottom: 5px; }
-.mini-member span { font-size: 0.8rem; color: var(--primary); text-transform: uppercase; font-weight: 700; }
-
-/* Gallery Images */
-.gal-img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; opacity: 0.7; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
-.gal-img:hover { opacity: 1; transform: scale(1.02); border-color: var(--primary); }
-
-/* Timeline Minimalistisch */
-.mini-timeline { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
-.mt-item h5 { color: var(--primary); margin-bottom: 2px; }
-.mt-item p { font-size: 0.9rem; color: var(--text-muted); }
-
-/* Tech Icons */
-.tech-icon { font-size: 2.5rem; color: rgba(255,255,255,0.3); transition: 0.3s; }
-.tech-icon:hover { color: #fff; transform: translateY(-5px); text-shadow: 0 0 15px currentColor; }
-
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width: 1024px) {
-  .bento-wrapper { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .bento-box { grid-column: span 1 !important; grid-row: span 1 !important; }
-  .small-hero h1 { font-size: 2.8rem; }
-  .box-gallery { grid-template-columns: 1fr; }
-}
-
-/* =========================================
-   ABOUT.CSS - UPDATES (TEAM & HISTORY)
-   ========================================= */
-
-/* --- TEAM SECTION (Interaktive Karten) --- */
+/* --- TEAM SECTION (UPDATED: KOMPAKT) --- */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  /* Engeres Grid: minmax auf 170px reduziert */
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 15px;
   width: 100%;
 }
 
@@ -134,7 +87,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 25px 20px;
+  padding: 15px; /* Reduziertes Padding */
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
@@ -143,15 +96,15 @@
 
 .member-card:hover {
   background: rgba(255, 255, 255, 0.07);
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   border-color: var(--primary);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .member-img-wrapper {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 15px auto;
+  width: 60px; /* Kleineres Bild */
+  height: 60px;
+  margin: 0 auto 10px auto;
   position: relative;
 }
 
@@ -172,145 +125,73 @@
 
 .member-info h4 {
   color: #fff;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+  font-size: 1rem; /* Kleinere Schrift */
+  margin-bottom: 2px;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
 }
 
 .member-role {
-  font-size: 0.8rem;
+  font-size: 0.7rem; /* Kleinere Schrift */
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-/* Versteckte Bio, die beim Hover erscheint */
+/* Updated Bio: Immer sichtbar, kein Wackeln */
 .member-bio {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  line-height: 1.4;
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(15px);
-  transition: 0.4s ease;
-  overflow: hidden;
-}
-
-.member-card:hover .member-bio {
+  line-height: 1.3;
   opacity: 1;
-  max-height: 80px; /* Genug Platz für den Text */
-  transform: translateY(0);
-  margin-top: 15px;
-  padding-top: 15px;
+  max-height: none;
+  transform: none;
+  margin-top: 8px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255,255,255,0.1);
+  display: block;
 }
 
-/* --- HISTORY SECTION (Animierte Timeline) --- */
-.box-timeline {
-  display: flex;
-  flex-direction: column;
-}
+/* --- HISTORY & REST --- */
+.timeline-wrapper { position: relative; padding-left: 25px; margin-top: 30px; display: flex; flex-direction: column; gap: 40px; }
+.timeline-line { position: absolute; left: 6px; top: 10px; bottom: 10px; width: 3px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; }
+.timeline-progress { position: absolute; left: 6px; top: 10px; width: 3px; height: 0; background: var(--primary); box-shadow: 0 0 15px var(--primary); border-radius: 3px; animation: fillLine 2.5s ease-out forwards; }
+@keyframes fillLine { to { height: 85%; } }
 
-.timeline-wrapper {
-  position: relative;
-  padding-left: 25px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-/* Die graue Hintergrundlinie */
-.timeline-line {
-  position: absolute;
-  left: 6px;
-  top: 10px;
-  bottom: 10px;
-  width: 3px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 3px;
-}
-
-/* Der farbige Balken, der sich füllt */
-.timeline-progress {
-  position: absolute;
-  left: 6px;
-  top: 10px;
-  width: 3px;
-  height: 0;
-  background: var(--primary);
-  box-shadow: 0 0 15px var(--primary);
-  border-radius: 3px;
-  animation: fillLine 2.5s ease-out forwards;
-}
-
-@keyframes fillLine {
-  to { height: 85%; }
-}
-
-.tl-item {
-  position: relative;
-  padding-left: 20px;
-  opacity: 0;
-  animation: fadeInRight 0.6s ease forwards;
-}
-
-/* Verzögerung für jeden Punkt */
+.tl-item { position: relative; padding-left: 20px; opacity: 0; animation: fadeInRight 0.6s ease forwards; }
 .tl-item:nth-child(1) { animation-delay: 0.3s; }
 .tl-item:nth-child(2) { animation-delay: 0.8s; }
 .tl-item:nth-child(3) { animation-delay: 1.3s; }
 .tl-item:nth-child(4) { animation-delay: 1.8s; }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
 
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(-15px); }
-  to { opacity: 1; transform: translateX(0); }
-}
+.tl-dot { position: absolute; left: -26px; top: 2px; width: 15px; height: 15px; background: var(--bg-dark); border: 2px solid var(--text-muted); border-radius: 50%; z-index: 2; transition: 0.3s; }
+.tl-item:hover .tl-dot, .tl-item.active .tl-dot { border-color: var(--primary); background: var(--primary); box-shadow: 0 0 15px var(--primary); transform: scale(1.2); }
 
-.tl-dot {
-  position: absolute;
-  left: -26px; /* Position auf der Linie */
-  top: 2px;
-  width: 15px;
-  height: 15px;
-  background: var(--bg-dark);
-  border: 2px solid var(--text-muted);
-  border-radius: 50%;
-  z-index: 2;
-  transition: 0.3s;
-}
+.tl-date { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; }
+.tl-content h4 { font-size: 1.15rem; color: #fff; margin-bottom: 5px; font-weight: 700; }
+.tl-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
-/* Sobald die Animation den Punkt erreicht (simuliert durch Delay), wird er aktiv */
-.tl-item:hover .tl-dot,
-.tl-item.active .tl-dot {
-  border-color: var(--primary);
-  background: var(--primary);
-  box-shadow: 0 0 15px var(--primary);
-  transform: scale(1.2);
-}
+/* Gallery Images */
+.gal-img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; opacity: 0.7; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+.gal-img:hover { opacity: 1; transform: scale(1.02); border-color: var(--primary); }
 
-.tl-date {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 5px;
-  display: block;
-  font-family: 'Rajdhani', sans-serif;
-  letter-spacing: 1px;
-}
+/* Timeline Minimalistisch */
+.mini-timeline { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
+.mt-item h5 { color: var(--primary); margin-bottom: 2px; }
+.mt-item p { font-size: 0.9rem; color: var(--text-muted); }
 
-.tl-content h4 {
-  font-size: 1.15rem;
-  color: #fff;
-  margin-bottom: 5px;
-  font-weight: 700;
-}
+/* Tech Icons */
+.tech-icon { font-size: 2.5rem; color: rgba(255,255,255,0.3); transition: 0.3s; }
+.tech-icon:hover { color: #fff; transform: translateY(-5px); text-shadow: 0 0 15px currentColor; }
 
-.tl-content p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .bento-wrapper { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .bento-box { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .small-hero h1 { font-size: 2.8rem; }
+  .box-gallery { grid-template-columns: 1fr; }
 }
