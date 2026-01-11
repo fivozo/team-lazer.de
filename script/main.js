@@ -99,7 +99,7 @@ function initLiveChat() {
         
         <div class="chat-body" id="chatBody">
           <div class="chat-msg bot">
-            Willkommen im Core von <b>TEAM LAZER</b>. ⚡
+            Willkommen im Chat von <b>TEAM LAZER</b>. ⚡
           </div>
           <div class="chat-msg bot">
             Ich bin dein Assistent. Frag mich nach <b>Preisen</b>, <b>Features</b> oder unserem <b>Team</b>.
