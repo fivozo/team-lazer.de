@@ -141,16 +141,22 @@ function initLiveChat() {
   let isSupportMode = false;
   let isTyping = false; 
 
-  // --- NEU: GLOBALE FUNKTION UM CHAT ZU ÖFFNEN ---
+  // --- GLOBALE FUNKTION UM CHAT ZU ÖFFNEN ---
   window.openTeamLazerChat = function() {
     windowEl.classList.add('active');
-    setTimeout(() => inputEl.focus(), 300); // Fokus mit kleiner Verzögerung
+    // FIX: Nur auf Desktop fokussieren, damit am Handy die Tastatur ZU bleibt
+    if (window.innerWidth > 900) {
+        setTimeout(() => inputEl.focus(), 300);
+    }
   };
 
   // 3. EVENTS
   toggleBtn.addEventListener('click', () => {
     windowEl.classList.toggle('active');
-    if(windowEl.classList.contains('active')) inputEl.focus();
+    // FIX: Nur auf Desktop fokussieren
+    if(windowEl.classList.contains('active') && window.innerWidth > 900) {
+        inputEl.focus();
+    }
   });
   
   closeBtn.addEventListener('click', () => windowEl.classList.remove('active'));
