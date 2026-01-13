@@ -125,10 +125,7 @@
                 <option value="security">Security / Bug Report</option>
                 <option value="partnership">Partnerschaft & Kooperation</option>
             </select>
-            <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 5px;">
-                Nachricht geht an: <span id="emailTarget" style="color: var(--primary);">Bitte wählen...</span>
-            </small>
-        </div>
+            </div>
 
         <div class="input-group">
             <label for="message">Nachricht <span class="required-star">*</span></label>
@@ -219,7 +216,7 @@
       <div class="modal-box">
           <i class="fa-solid fa-circle-check modal-icon success"></i>
           <h3 class="modal-title">Nachricht gesendet!</h3>
-          <p class="modal-text">Vielen Dank. Deine Anfrage wurde erfolgreich übermittelt. Bitte prüfe gegebenenfalls deinen Spam-Ordner auf die Bestätigung.</p>
+          <p class="modal-text">Vielen Dank! Deine Nachricht hat uns erreicht. Wir werden uns so schnell wie möglich bei dir melden.</p>
           <button class="modal-btn" onclick="closeModal('successModal')">Schließen</button>
       </div>
   </div>
@@ -227,26 +224,13 @@
   <script src="../script/main.js"></script>
 
   <script>
-    // 1. ANZEIGE UND VERSAND ZIELE (Jetzt auf STRATO eingestellt)
+    // 1. ZIEL-ADRESSEN (CRYPTO STRINGS)
     const emailMap = {
-        'general': 'kontakt@team-lazer.de',
-        'support': 'support@team-lazer.de',
-        'security': 'security@team-lazer.de',
-        'partnership': 'kontakt@team-lazer.de'
+        'general': 'f082d410f13b1bd44226e05f4bc6f364',      // Kontakt
+        'support': 'ef30b4fce0be46e7d234817f848644e9',      // Support
+        'security': '4757895e5c2ac2543e5b237650a09e2b',     // Security
+        'partnership': 'f082d410f13b1bd44226e05f4bc6f364'   // Geht an Kontakt
     };
-
-    // Dropdown Logik
-    const deptSelect = document.getElementById('department');
-    const targetDisplay = document.getElementById('emailTarget');
-
-    deptSelect.addEventListener('change', function() {
-        const selected = this.value;
-        if(emailMap[selected]) {
-            targetDisplay.textContent = emailMap[selected];
-        } else {
-            targetDisplay.textContent = 'Bitte wählen...';
-        }
-    });
 
     // 2. SENDEN FUNKTION
     function validateAndSend() {
@@ -275,7 +259,7 @@
 
         const targetEmail = emailMap[dept];
         
-        // Senden an FormSubmit API
+        // Senden an FormSubmit API mit Hash
         fetch("https://formsubmit.co/ajax/" + targetEmail, {
             method: "POST",
             headers: { 
@@ -284,7 +268,7 @@
             },
             body: JSON.stringify({
                 name: name,
-                email: email, // Nutzer-Email für Reply-To
+                email: email, 
                 _subject: "Neue Anfrage von " + name + " (" + dept + ")",
                 department: dept,
                 message: msg
@@ -294,7 +278,6 @@
         .then(data => {
             openModal('successModal');
             document.getElementById('contactForm').reset();
-            targetDisplay.textContent = 'Bitte wählen...';
         })
         .catch(error => {
             console.error('Error:', error);
