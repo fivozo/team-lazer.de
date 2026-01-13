@@ -251,7 +251,7 @@
         'partnership': 'f082d410f13b1bd44226e05f4bc6f364'   // Partnerschaft -> Kontakt
     };
 
-    // 2. VERSAND-LOGIK MIT SCHÖNER MAIL
+    // 2. VERSAND-LOGIK MIT DEINEM LAYOUT
     function validateAndSend() {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -278,7 +278,7 @@
 
         const targetEmail = emailMap[dept];
         
-        // Deutsche Namen für die Mail
+        // Deutsche Namen für die Abteilung
         const deptNames = {
             'general': 'Allgemeine Anfrage',
             'support': 'Technischer Support',
@@ -297,11 +297,11 @@
             body: JSON.stringify({
                 // Design Einstellungen
                 _template: "box",
-                _subject: "🚀 Neue Anfrage: " + name + " (" + deptFancy + ")",
+                _subject: "📫Nutzeranfrage: " + name + " " + deptFancy,
                 
-                // Schöne, deutsche Felder mit Emojis
+                // DEINE GEWÜNSCHTE STRUKTUR:
                 "👤 Name": name,
-                "📧 Antwort-Email": email,
+                "📧 Email-Adresse": email,
                 "📂 Abteilung": deptFancy,
                 "📝 Nachricht": msg,
                 
