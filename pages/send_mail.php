@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Empfänger-Logik (Muss exakt wie im HTML sein)
     $emailMap = [
-        'general' => 'jonwagner2007@team-lazer.de',
+        'general' => 'kontakt@team-lazer.de',
         'support' => 'support@team-lazer.de',
         'security' => 'security@team-lazer.de',
         'partnership' => 'kontakt@team-lazer.de'
