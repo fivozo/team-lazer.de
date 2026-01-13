@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Header (Wichtig damit es nicht im Spam landet)
     // "From" sollte eine Adresse DEINER Domain sein (z.B. noreply@team-lazer.de), sonst blockt Strato oft.
-    $headers = "From: noreply@team-lazer.de\r\n";
+    $headers = "From: service@team-lazer.de\r\n";
     $headers .= "Reply-To: $email\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
