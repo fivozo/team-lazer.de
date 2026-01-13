@@ -6,11 +6,14 @@
   <title>Kontakt | TEAM LAZER</title>
   
   <link rel="stylesheet" href="../style/global.css">
-  <link rel="stylesheet" href="../style/about.css"> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/about.css"> 
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Spezifische Styles für das Kontaktformular im Bento-Stil */
+    /* --- CSS für Kontaktformular & Modals --- */
+    
     .contact-form-container {
       display: flex;
       flex-direction: column;
@@ -28,6 +31,10 @@
       color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 1px;
+    }
+    .required-star {
+      color: #ff4757; /* Rot für Pflichtfelder */
+      margin-left: 4px;
     }
     .contact-input, .contact-select, .contact-textarea {
       background: rgba(255, 255, 255, 0.03);
@@ -53,8 +60,8 @@
       resize: vertical;
       min-height: 150px;
     }
-    
-    /* Direct Contact Items */
+
+    /* Direct Contact Items Style */
     .direct-contact-item {
       display: flex;
       align-items: center;
@@ -102,14 +109,104 @@
       text-shadow: 0 0 10px var(--primary-glow);
     }
 
-    /* Grid Anpassungen für Kontakt */
+    /* --- SPLIT LIVE SUPPORT BOX --- */
+    .support-split-container {
+        display: flex;
+        gap: 15px;
+        height: 100%;
+    }
+    .support-option {
+        flex: 1;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.3s;
+        cursor: pointer;
+        padding: 20px;
+    }
+    
+    /* Discord Style */
+    .opt-discord:hover {
+        background: rgba(88, 101, 242, 0.1);
+        border-color: #5865F2;
+        box-shadow: 0 0 20px rgba(88, 101, 242, 0.2);
+    }
+    .opt-discord i { color: #5865F2; font-size: 2.5rem; margin-bottom: 10px; transition: 0.3s; }
+    
+    /* Chat Style */
+    .opt-chat:hover {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+    .opt-chat i { color: #10b981; font-size: 2.5rem; margin-bottom: 10px; transition: 0.3s; }
+
+    .opt-title { color: #fff; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.2rem; }
+    .opt-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; }
+
+    /* --- POPUP MODAL STYLES --- */
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    
+    .modal-box {
+        background: #0f0f13;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 30px;
+        border-radius: 16px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        transform: scale(0.8);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .modal-overlay.active .modal-box { transform: scale(1); }
+
+    .modal-icon { font-size: 3rem; margin-bottom: 20px; }
+    .modal-icon.error { color: #ff4757; }
+    .modal-icon.success { color: #10b981; }
+    
+    .modal-title { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
+    .modal-text { color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+    
+    .modal-btn {
+        background: rgba(255,255,255,0.1);
+        border: none;
+        color: #fff;
+        padding: 10px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        transition: 0.3s;
+    }
+    .modal-btn:hover { background: var(--primary); }
+
+    /* Grid Layout */
     .box-form { grid-column: span 7; grid-row: span 2; }
     .box-info { grid-column: span 5; }
-    .box-discord { grid-column: span 5; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: rgba(88, 101, 242, 0.1); border-color: rgba(88, 101, 242, 0.3); }
-    .box-discord:hover { border-color: #5865F2; box-shadow: 0 0 30px rgba(88, 101, 242, 0.2); }
+    .box-support { grid-column: span 5; }
 
     @media (max-width: 1024px) {
-      .box-form, .box-info, .box-discord { grid-column: span 12; }
+      .box-form, .box-info, .box-support { grid-column: span 12; }
+      .support-split-container { flex-direction: column; }
     }
   </style>
 </head>
@@ -155,35 +252,41 @@
     
     <section class="bento-box box-form scroll-reveal">
       <h2 class="bento-title">Nachricht senden</h2>
-      <form class="contact-form-container">
+      <p style="font-size: 0.8rem; color: #ff4757; margin-bottom: 20px;">* Alle Felder sind Pflichtfelder.</p>
+      
+      <form class="contact-form-container" id="contactForm">
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="input-group">
-                <label for="name">Dein Name / Tag</label>
-                <input type="text" id="name" class="contact-input" placeholder="z.B. Max">
+                <label for="name">Name / Tag <span class="required-star">*</span></label>
+                <input type="text" id="name" class="contact-input" placeholder="z.B. fivozo">
             </div>
             <div class="input-group">
-                <label for="email">Deine E-Mail</label>
+                <label for="email">E-Mail <span class="required-star">*</span></label>
                 <input type="email" id="email" class="contact-input" placeholder="mail@example.com">
             </div>
         </div>
 
         <div class="input-group">
-            <label for="department">Worum geht es?</label>
+            <label for="department">Bereich <span class="required-star">*</span></label>
             <select id="department" class="contact-select">
+                <option value="" disabled selected>Bitte wählen...</option>
                 <option value="general">Allgemeine Anfrage</option>
                 <option value="support">Support / Technische Hilfe</option>
                 <option value="security">Security / Bug Report</option>
                 <option value="partnership">Partnerschaft & Kooperation</option>
             </select>
+            <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 5px;">
+                Nachricht geht an: <span id="emailTarget" style="color: var(--primary);">Bitte wählen...</span>
+            </small>
         </div>
 
         <div class="input-group">
-            <label for="message">Deine Nachricht</label>
+            <label for="message">Nachricht <span class="required-star">*</span></label>
             <textarea id="message" class="contact-textarea" placeholder="Beschreibe dein Anliegen so genau wie möglich..."></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary glow-anim" style="align-self: flex-start; margin-top: 10px;">
+        <button type="button" onclick="validateAndSend()" class="btn btn-primary glow-anim" style="align-self: flex-start; margin-top: 10px;">
             <i class="fa-solid fa-paper-plane"></i> Absenden
         </button>
 
@@ -191,9 +294,9 @@
     </section>
 
     <section class="bento-box box-info scroll-reveal delay-1">
-      <h2 class="bento-title">Direkter Draht</h2>
+      <h2 class="bento-title">E-Mail Adressen</h2>
       <p class="bento-text" style="margin-bottom: 30px;">
-        Lieber per E-Mail? Hier sind unsere offiziellen Adressen für dein Anliegen.
+        Übersicht unserer offiziellen Abteilungen.
       </p>
 
       <div class="direct-contact-item">
@@ -221,11 +324,23 @@
       </div>
     </section>
 
-    <a href="https://discord.gg/DEINLINK" target="_blank" class="bento-box box-discord scroll-reveal delay-2" style="text-decoration: none;">
-      <i class="fa-brands fa-discord" style="font-size: 3rem; color: #5865F2; margin-bottom: 15px;"></i>
-      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin-bottom: 5px;">Live Support?</h3>
-      <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Eröffne ein Ticket direkt auf unserem Discord Server.</p>
-    </a>
+    <section class="bento-box box-support scroll-reveal delay-2">
+      <h2 class="bento-title" style="margin-bottom: 20px;">Live Support?</h2>
+      
+      <div class="support-split-container">
+          <a href="https://discord.gg/DEINLINK" target="_blank" class="support-option opt-discord">
+              <i class="fa-brands fa-discord"></i>
+              <span class="opt-title">Discord</span>
+              <span class="opt-desc">Ticket System & Community</span>
+          </a>
+
+          <div onclick="openChatWidget()" class="support-option opt-chat">
+              <i class="fa-solid fa-comments"></i>
+              <span class="opt-title">Live Chat</span>
+              <span class="opt-desc">Direkt hier schreiben</span>
+          </div>
+      </div>
+    </section>
 
   </div>
 
@@ -242,6 +357,95 @@
     </div>
   </footer>
 
+  <div id="errorModal" class="modal-overlay">
+      <div class="modal-box">
+          <i class="fa-solid fa-circle-exclamation modal-icon error"></i>
+          <h3 class="modal-title">Angaben unvollständig</h3>
+          <p class="modal-text" id="errorText">Bitte überprüfe die markierten Felder.</p>
+          <button class="modal-btn" onclick="closeModal('errorModal')">Verstanden</button>
+      </div>
+  </div>
+
+  <div id="successModal" class="modal-overlay">
+      <div class="modal-box">
+          <i class="fa-solid fa-circle-check modal-icon success"></i>
+          <h3 class="modal-title">Nachricht gesendet!</h3>
+          <p class="modal-text">Vielen Dank. Deine Anfrage wurde erfolgreich an <span id="successTarget" style="color:#fff;">...</span> übermittelt.</p>
+          <button class="modal-btn" onclick="closeModal('successModal')">Schließen</button>
+      </div>
+  </div>
+
   <script src="../script/main.js"></script>
+
+  <script>
+    // Mapping der E-Mail Adressen
+    const emailMap = {
+        'general': 'kontakt@team-lazer.de',
+        'support': 'support@team-lazer.de',
+        'security': 'security@team-lazer.de',
+        'partnership': 'kontakt@team-lazer.de'
+    };
+
+    // Anzeige aktualisieren, wenn man im Dropdown etwas wählt
+    const deptSelect = document.getElementById('department');
+    const targetDisplay = document.getElementById('emailTarget');
+
+    deptSelect.addEventListener('change', function() {
+        const selected = this.value;
+        if(emailMap[selected]) {
+            targetDisplay.textContent = emailMap[selected];
+        } else {
+            targetDisplay.textContent = 'Bitte wählen...';
+        }
+    });
+
+    // Validierung und Senden
+    function validateAndSend() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const dept = document.getElementById('department').value;
+        const msg = document.getElementById('message').value.trim();
+        
+        let errors = [];
+
+        if(!name) errors.push("Name fehlt");
+        if(!email || !email.includes('@')) errors.push("Gültige E-Mail fehlt");
+        if(!dept) errors.push("Bereich nicht ausgewählt");
+        if(!msg) errors.push("Nachricht ist leer");
+
+        if(errors.length > 0) {
+            // Fehler anzeigen
+            const errorList = errors.join('<br>');
+            document.getElementById('errorText').innerHTML = "Folgende Felder sind fehlerhaft:<br><br>" + errorList;
+            openModal('errorModal');
+        } else {
+            // Erfolg simulieren
+            const targetMail = emailMap[dept];
+            document.getElementById('successTarget').textContent = targetMail;
+            openModal('successModal');
+            
+            // Formular zurücksetzen
+            document.getElementById('contactForm').reset();
+            targetDisplay.textContent = 'Bitte wählen...';
+        }
+    }
+
+    // Modal Funktionen
+    function openModal(id) {
+        document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
+    }
+
+    // Chat öffnen Funktion (Simuliert klick auf Chat Icon unten rechts)
+    function openChatWidget() {
+        // Versucht gängige Chat-Buttons zu finden oder gibt Info
+        // Da ich deinen Chat-Code nicht kenne, ist das ein generischer Trigger.
+        alert("Chat Widget wird geöffnet... (Hier muss der Trigger deines Chat-Plugins rein)");
+        // Beispiel: Tawk_API.toggle(); oder document.querySelector('.chat-trigger').click();
+    }
+  </script>
+
 </body>
 </html>
