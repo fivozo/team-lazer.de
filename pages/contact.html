@@ -400,6 +400,7 @@
     });
 
     // Validierung und Senden
+    // Validierung und echtes Senden
     function validateAndSend() {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -419,14 +420,49 @@
             document.getElementById('errorText').innerHTML = "Folgende Felder sind fehlerhaft:<br><br>" + errorList;
             openModal('errorModal');
         } else {
-            // Erfolg simulieren
-            const targetMail = emailMap[dept];
-            document.getElementById('successTarget').textContent = targetMail;
-            openModal('successModal');
-            
-            // Formular zurücksetzen
-            document.getElementById('contactForm').reset();
-            targetDisplay.textContent = 'Bitte wählen...';
+            // Button deaktivieren, damit man nicht doppelt klickt
+            const btn = document.querySelector('button[onclick="validateAndSend()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sende...';
+            btn.disabled = true;
+
+            // Daten an send_mail.php senden
+            fetch('send_mail.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    dept: dept,
+                    message: msg
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Erfolg!
+                    const targetMail = emailMap[dept];
+                    document.getElementById('successTarget').textContent = targetMail;
+                    openModal('successModal');
+                    
+                    // Formular zurücksetzen
+                    document.getElementById('contactForm').reset();
+                    document.getElementById('emailTarget').textContent = 'Bitte wählen...';
+                } else {
+                    // Server Fehler
+                    alert("Es gab einen Fehler beim Senden der E-Mail. Bitte versuche es später noch einmal.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Verbindungsfehler. Bitte prüfe deine Internetverbindung.");
+            })
+            .finally(() => {
+                // Button wieder normal machen
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
         }
     }
 
