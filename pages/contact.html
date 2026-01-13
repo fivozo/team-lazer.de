@@ -251,7 +251,7 @@
         'partnership': 'f082d410f13b1bd44226e05f4bc6f364'   // Partnerschaft -> Kontakt
     };
 
-    // 2. VERSAND-LOGIK MIT SPEZIAL-BETREFF
+    // 2. VERSAND-LOGIK
     function validateAndSend() {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -278,7 +278,7 @@
 
         const targetEmail = emailMap[dept];
         
-        // Kurze Namen für die Mail (ohne "Anfrage")
+        // Kurze Namen für die Mail
         const deptNames = {
             'general': 'Allgemein',
             'support': 'Support',
@@ -295,18 +295,14 @@
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                // Design Einstellungen
                 _template: "box",
-                // HIER IST DER FETTE BETREFF (kopierter Unicode String)
                 _subject: "📫 𝗡𝘂𝘁𝘇𝗲𝗿𝗮𝗻𝗳𝗿𝗮𝗴𝗲: " + name + " (" + deptFancy + ")",
                 
-                // INHALT WIE GEWÜNSCHT:
                 "👤 Name": name,
                 "📧 Email-Adresse": email,
                 "📂 Abteilung": deptFancy,
                 "📝 Nachricht": msg,
                 
-                // Reply-To setzen
                 _replyto: email 
             })
         })
@@ -328,7 +324,15 @@
     // Modal Helper
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    function openChatWidget() { alert("Chat wird geöffnet..."); }
+    
+    // LIVE CHAT ÖFFNEN (Ruft die neue Funktion in main.js auf)
+    function openChatWidget() {
+        if(window.openTeamLazerChat) {
+            window.openTeamLazerChat();
+        } else {
+            alert("Chat wird geladen...");
+        }
+    }
   </script>
 
 </body>
