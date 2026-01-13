@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
     // Versenden
-    if (mail($to, $subject, $email_content, $headers)) {
+    if (mail($to, $subject, $email_content, $headers, "-fservice@team-lazer.de")) {
         http_response_code(200);
         echo "Erfolg";
     } else {
